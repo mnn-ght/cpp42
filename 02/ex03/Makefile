@@ -10,7 +10,7 @@ SRC_PATH = src/
 OBJ_PATH = obj/
 
 #################### SRC & OBJ ####################
-SRC = main.cpp Fixed.cpp
+SRC = main.cpp Fixed.cpp Point.cpp bsp.cpp
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 OBJ = $(SRC:.cpp=.o)
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))

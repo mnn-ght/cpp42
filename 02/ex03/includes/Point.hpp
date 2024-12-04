@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:28:43 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/04 13:20:44 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:02:34 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ public:
 
 	Point& 	operator=(const Point &point);
 
-	Fixed		getx( void ) const;
-	Fixed		gety( void ) const;
-	Fixed	setx(float const raw);
-	Fixed	sety(float const raw);
+	float	getFloatX( void ) const;
+	float	getFloatY( void ) const;
 };
 
 bool	bsp(Point const a, Point const b, Point const c, Point const point);
