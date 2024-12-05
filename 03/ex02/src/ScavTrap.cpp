@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:20:29 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 11:57:47 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/05 12:30:10 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,20 @@
 	CONSTRUCTORS
 */
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
+	this->_HP = 100;
+	this->_Energy = 50;
+	this->_Damage = 20;
 	this->gatekeeper = false;
 	std::cout << "\e[1;32mScavTrap " << name << " has been created !\e[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap() : ClapTrap("NO_NAME", 100, 50, 20)
+ScavTrap::ScavTrap() : ClapTrap("NO_NAME")
 {
+	this->_HP = 100;
+	this->_Energy = 50;
+	this->_Damage = 20;
 	this->gatekeeper = false;
 	std::cout << "\e[1;32mScavTrap NO_NAME has been created !\e[0m" << std::endl;
 }
