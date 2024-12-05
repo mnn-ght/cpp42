@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:20:29 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 12:37:08 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/05 12:46:20 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,24 @@ void ScavTrap::guardGate( void )
 		std::cout << "ScavTrap " << this->_name << " is already in Gate keeper mode"<< std::endl;
 	std::cout << "\e[2;37m----------------- END GATEKEEPER ACTION -----------------\e[0m" << std::endl;
 	std::cout << std::endl;
+}
+
+std::string	ScavTrap::getName(void)
+{
+	return this->_name;
+}
+
+int	ScavTrap::getHP(void)
+{
+	return 100;
+}
+
+int	ScavTrap::getEnergy(void)
+{
+	return 50;
+}
+
+int	ScavTrap::getDamage(void)
+{
+	return 20;
 }

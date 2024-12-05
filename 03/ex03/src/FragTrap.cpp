@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:20:29 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 12:36:07 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/05 12:45:52 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,24 @@ void FragTrap::highFivesGuys(void)
 	else
 		std::cout << "FragTrap " << this->_name << " is not happy because you didn't accept the high five." << std::endl;
 	std::cout << "\e[2;37m---------------- END HIGH FIVE ACTION ----------------\e[0m" << std::endl;
+}
+
+std::string	FragTrap::getName(void)
+{
+	return this->_name;
+}
+
+int	FragTrap::getHP(void)
+{
+	return 100;
+}
+
+int	FragTrap::getEnergy(void)
+{
+	return 100;
+}
+
+int	FragTrap::getDamage(void)
+{
+	return 30;
 }
