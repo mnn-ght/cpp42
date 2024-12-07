@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:06:40 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 15:19:05 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/07 14:23:45 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	Cat::makeSound(void) const
 	std::cout << this->getType() << " makes Miaou Miaou" << std::endl;
 }
 
-void	Cat::think(void) const
+void	Cat::think(int index_idea) const
 {
-	std::cout << get_brain() << " makes Miaou Miaou" << std::endl;
+	std::cout << this->_brain->get_idea(index_idea) << " is in " << this->type << " brain." << std::endl;
 }

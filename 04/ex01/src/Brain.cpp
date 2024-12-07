@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:47:17 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 15:17:00 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/07 14:20:56 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,17 @@ Brain	&Brain::operator=(const Brain &brain)
 			this->ideas[i] = brain.ideas[i];
 	}
 	return *this;
+}
+
+std::string	*Brain::get_brain()
+{
+	return this->ideas;
+}
+
+std::string	Brain::get_idea(int index_idea)
+{
+	if (index_idea < 100 && index_idea >= 0)
+		return (this->ideas[index_idea]);
+	else
+		return ("no thoughts.");
 }

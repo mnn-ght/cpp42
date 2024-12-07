@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:28:43 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 15:17:40 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/07 14:22:49 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ public:
 	Cat &operator=(const Cat &Cat);
 
 	void	makeSound() const;
-	void	think() const;
+	void	think(int index_idea) const;
 };
 
 #endif

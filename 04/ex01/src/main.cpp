@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 15:16:00 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/07 14:22:31 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int main( void )
 	Cat *copy_cat(cat);
 	
 	std::cout << copy_cat->getType() << std::endl;
+	copy_cat->think(42);
 	delete dog;
 	delete cat;
 	

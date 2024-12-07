@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:43:55 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 14:55:48 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/07 14:18:57 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ public:
 	~Brain();
 
 	Brain	&operator=(const Brain &brain);
+	std::string	*get_brain();
+	std::string	get_idea(int index_idea);
 };
 
 #endif
