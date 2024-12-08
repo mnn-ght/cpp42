@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:28:43 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 10:19:51 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/05 13:41:42 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 class Instance
 {
-public:
+private:
 	std::string base_need;
 	
 public:
