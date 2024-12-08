@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:06:40 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 15:01:44 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/08 15:43:58 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 Dog::Dog()
 {
+	std::cout << "Dog class constructor called." << std::endl;
 	this->Animal::type = "Dog";
 	this->_brain = new Brain();
-	std::cout << "Dog class constructor called." << std::endl;
 }
 
 Dog::Dog(const Dog &dog)
 {
+	std::cout << "Dog copy class constructor called." << std::endl;
 	this->Animal::type = dog.type;
 	this->_brain = new Brain(*dog._brain);
-	std::cout << "Dog copy class constructor called." << std::endl;
 }
 
 Dog::~Dog()
 {
-	delete this->_brain;
 	std::cout << "Dog class destructor called." << std::endl;
+	delete this->_brain;
 }
 
 Dog &Dog::operator=(const Dog &dog)
@@ -47,3 +47,7 @@ void	Dog::makeSound(void) const
 	std::cout << this->getType() << " makes Woaf Woaf" << std::endl;
 }
 
+void	Dog::think(int index_idea) const
+{
+	std::cout << this->_brain->get_idea(index_idea) << " is in " << this->type << " brain." << std::endl;
+}

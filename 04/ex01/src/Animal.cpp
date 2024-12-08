@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:06:40 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 14:31:11 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/07 16:47:41 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Animal &Animal::operator=(const Animal &animal)
 
 void	Animal::makeSound(void) const
 {
-	std::cout << this->getType() << " makes * Animal sounds *" << std::endl;
+	std::cout << this->getType() << " makes no sound" << std::endl;
 }
 
 std::string	Animal::getType() const
