@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:28:43 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/04 10:22:29 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/10 09:34:37 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 class Fixed
 {
 private:
-	int	value;
-	static int const nb_bits;
+	int	_value;
+	static int const _nb_bits;
 	
 public:
 	Fixed();
