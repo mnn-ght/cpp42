@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:28:43 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 12:58:43 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/11 15:48:57 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ public:
 	void attack(const std::string& target);
 	void guardGate( void );
 
-	std::string	getName(void);
 	int	getHP(void);
 	int	getEnergy(void);
 	int	getDamage(void);
@@ -38,5 +37,7 @@ public:
 private:
 	bool	gatekeeper;
 };
+
+std::ostream	&operator<<(std::ostream& out, const ScavTrap &scavtrap);
 
 #endif

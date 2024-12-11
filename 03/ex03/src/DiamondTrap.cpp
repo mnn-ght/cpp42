@@ -28,14 +28,15 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name), ScavTrap(name), Fra
 
 DiamondTrap::DiamondTrap() : ClapTrap(), ScavTrap(), FragTrap()
 {
+	this->_name = "NO_NAME";
 	this->ClapTrap::_name = this->_name + "_clap_name";
 	this->_HP = FragTrap::getHP();
 	this->_Energy = ScavTrap::getEnergy();
 	this->_Damage = FragTrap::getDamage();
-	std::cout << "\e[1;32mDiamondTrap NO_NAME has been created !\e[0m" << std::endl;
+	std::cout << "\e[1;32mDefault DiamondTrap NO_NAME has been created !\e[0m" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &DiamondTrap) : ClapTrap(DiamondTrap._name), ScavTrap(DiamondTrap._name), FragTrap(DiamondTrap._name)
+DiamondTrap::DiamondTrap(const DiamondTrap &DiamondTrap)
 {
 	*this = DiamondTrap;
 	std::cout << "\e[1;32mCopy DiamondTrap " << this->_name << " has been created !\e[0m" << std::endl;
@@ -58,7 +59,7 @@ DiamondTrap	&DiamondTrap::operator=(const DiamondTrap &DiamondTrap)
 {
 	if (this != &DiamondTrap)
 	{
-		std::cout << "\e[1;32mDiamondTrap " << DiamondTrap._name << " copied into " << this->_name << std::endl;
+		std::cout << "\e[1;32mDiamondTrap " << DiamondTrap._name << " copied." << std::endl;
 		this->_name = DiamondTrap._name;
 		this->ClapTrap::_name = DiamondTrap.ClapTrap::_name;
 		this->_HP = DiamondTrap._HP;
@@ -66,6 +67,12 @@ DiamondTrap	&DiamondTrap::operator=(const DiamondTrap &DiamondTrap)
 		this->_Damage = DiamondTrap._Damage;
 	}
 	return (*this);
+}
+
+std::ostream	&operator<<(std::ostream& out, const DiamondTrap &diamondTrap)
+{
+	out << diamondTrap.getName();
+	return out;
 }
 
 /*

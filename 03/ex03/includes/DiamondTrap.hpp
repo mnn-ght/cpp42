@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:28:43 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 13:07:48 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/11 15:41:56 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ public:
 	void attack(const std::string& target);
 
 };
+
+std::ostream	&operator<<(std::ostream& out, const DiamondTrap &diamondTrap);
 
 #endif

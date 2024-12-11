@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 13:18:27 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/11 15:51:12 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main( void )
 {
-	ClapTrap	ClapTrap1("CL4P-TP");
+	/* ClapTrap	ClapTrap1("CL4P-TP");
 
 	ClapTrap1.attack("an insect that did nothing");
 	ClapTrap1.takeDamage(5);
@@ -32,9 +32,15 @@ int main( void )
 
 	FragTrap	FragTrap("FR4G-TP");
 	FragTrap.highFivesGuys();
-	FragTrap.highFivesGuys();
+	FragTrap.highFivesGuys(); */
 
 	DiamondTrap	DiaTrap("DI4-TP");
 	DiaTrap.whoAmI();
+
+	DiamondTrap	DiaTrap2(DiaTrap);
+	DiaTrap2.whoAmI();
+
+	DiamondTrap	DiaTrap3;
+	DiaTrap3.whoAmI();
 	return (0);
 }

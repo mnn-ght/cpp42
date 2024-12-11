@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:28:43 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 12:58:36 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/11 15:48:47 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ public:
 
 	void highFivesGuys(void);
 	
-	std::string	getName(void);
 	int	getHP(void);
 	int	getEnergy(void);
 	int	getDamage(void);
 };
+
+std::ostream	&operator<<(std::ostream& out, const FragTrap &fragTrap);
 
 #endif

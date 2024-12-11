@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:28:43 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 12:40:01 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/11 15:44:15 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ public:
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 
-	std::string	getName(void);
-	int	getHP(void);
-	int	getEnergy(void);
-	int	getDamage(void);
+	std::string	getName(void) const;
+	int	getHP(void) const;
+	int	getEnergy(void) const;
+	int	getDamage(void) const;
 };
+
+std::ostream	&operator<<(std::ostream& out, const ClapTrap &claptrap);
 
 #endif
