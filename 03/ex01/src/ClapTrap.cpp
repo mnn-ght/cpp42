@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:32:55 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 11:58:45 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/11 15:19:50 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &claptrap)
 		this->_Damage = claptrap._Damage;
 	}
 	return (*this);
+}
+
+std::ostream	&operator<<(std::ostream& out, const ClapTrap &claptrap)
+{
+	out << claptrap.getName();
+	return out;
 }
 
 /*
@@ -119,4 +125,9 @@ void ClapTrap::beRepaired(unsigned int amount)
 	}
 	std::cout << "\e[2;37m----------------- END REPAIR ACTION -----------------\e[0m" << std::endl;
 	std::cout << std::endl;
+}
+
+std::string	ClapTrap::getName(void) const
+{
+	return this->_name;
 }

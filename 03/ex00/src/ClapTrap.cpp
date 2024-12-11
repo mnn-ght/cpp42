@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:32:55 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/05 09:50:38 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/11 15:10:53 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 	CONSTRUCTORS
 */
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _HP(10), _Energy(10), _Damage(0)
-{
-	std::cout << "ClapTrap " << name << " has been created !" << std::endl;
-}
-
 ClapTrap::ClapTrap(void) : _name("NO_NAME"), _HP(10), _Energy(10), _Damage(0)
 {
 	std::cout << "Default ClapTrap " << this->_name << " has been created !" << std::endl;
+}
+
+ClapTrap::ClapTrap(std::string name) : _name(name), _HP(10), _Energy(10), _Damage(0)
+{
+	std::cout << "ClapTrap " << name << " has been created !" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &claptrap)
@@ -55,6 +55,12 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &claptrap)
 	this->~ClapTrap();
 	new(this) ClapTrap(claptrap._name, claptrap._HP, claptrap._Energy, claptrap._Damage);
 	return (*this);
+}
+
+std::ostream	&operator<<(std::ostream& out, const ClapTrap &claptrap)
+{
+	out << claptrap.getName();
+	return out;
 }
 
 /*
@@ -97,4 +103,9 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << this->_name << " successfully repairs itself with " << amount << " points of health left."<< std::endl;
 		std::cout << "ClapTrap " << this->_name << " has now " << this->_HP << " points of health left."<< std::endl;
 	}
+}
+
+std::string	ClapTrap::getName(void) const
+{
+	return this->_name;
 }
