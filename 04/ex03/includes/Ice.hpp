@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 17:33:22 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/14 13:41:35 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/14 18:14:32 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ class Ice : public AMateria
 
 		Ice &operator=(const Ice &src);
 
-		virtual AMateria* clone() const;
-		virtual void use(ICharacter& target);
+		AMateria* clone() const;
+		void use(ICharacter& target);
 };
-
-
 
 #endif

@@ -6,16 +6,14 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/14 15:15:52 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/14 18:32:08 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/AMateria.hpp"
 #include "../includes/Ice.hpp"
 #include "../includes/Cure.hpp"
 #include "../includes/Character.hpp"
-#include "../includes/ICharacter.hpp"
-
+#include "../includes/MateriaSource.hpp"
 
 int main( void )
 {
@@ -35,6 +33,7 @@ int main( void )
 	
 	me->use(0, *bob);
 	me->use(1, *bob);
+	me->unequip(1);
 
 	delete bob;
 	delete me;

@@ -6,14 +6,27 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:22:51 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/14 16:43:56 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/14 18:37:07 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Character.hpp"
 
-Character::Character(std::string name) : _name(name)
+Character::Character(std::string name) : _name(name), _NbFloor(0)
 {
+	for (int i = 0; i < 4; i++)
+		this->_inventory[i] = NULL;
+}
+
+Character::Character() : _name("NO_NAME"), _NbFloor(0)
+{
+	for (int i = 0; i < 4; i++)
+		this->_inventory[i] = NULL;
+}
+
+Character::Character(const Character &src)
+{
+	*this = src;
 }
 
 Character::~Character()
@@ -23,15 +36,10 @@ Character::~Character()
 		if (this->_inventory[i])
 			delete this->_inventory[i];
 	}
-}
-
-Character::Character() : _name("NO_NAME")
-{
-}
-
-Character::Character(const Character &src)
-{
-	*this = src;
+	for (int i = 0; i < this->_NbFloor; i++)
+	{
+		delete this->_onFloor[i];
+	}
 }
 
 Character &Character::operator=(const Character &src)
@@ -41,9 +49,6 @@ Character &Character::operator=(const Character &src)
 	{
 		if (this->_inventory[i])
 			delete this->_inventory[i];
-	}
-	for (int i = 0; i < 4; i++)
-	{
 		if (src._inventory[i])
 			this->_inventory[i] = src._inventory[i]->clone();
 	}
@@ -61,7 +66,7 @@ void Character::equip(AMateria* m)
 	{
 		if (!this->_inventory[i])
 		{
-			this->_inventory[i] = m->clone();
+			this->_inventory[i] = m;
 			break ;
 		}
 	}
@@ -73,9 +78,10 @@ void Character::unequip(int idx)
 		return ;
 	if (this->_inventory[idx])
 	{
-		
+		this->_onFloor[this->_NbFloor] = this->_inventory[idx];
+		this->_NbFloor++;
+		this->_inventory[idx] = NULL;
 	}
-	this->_inventory[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter& target)

@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:26:45 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/14 16:32:25 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/14 18:04:07 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <iostream>
 #include "ICharacter.hpp"
 #include "Character.hpp"
+
+class ICharacter;
 
 class AMateria
 {
@@ -27,7 +29,7 @@ class AMateria
 		AMateria(std::string const & type);
 		AMateria(const AMateria &materia);
 		
-		~AMateria();
+		virtual ~AMateria();
 
 		AMateria &operator=(const AMateria &materia);
 		

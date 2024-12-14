@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:05:45 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/14 16:44:00 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/14 18:41:54 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ class Character : public ICharacter
 private:
 	std::string _name;
 	AMateria *_inventory[4];
+	AMateria *_onFloor[100];
+	int	_NbFloor;
 
 public:
 	Character();

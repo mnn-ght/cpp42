@@ -6,20 +6,20 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 13:38:10 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/14 15:19:55 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/14 18:31:22 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cure.hpp"
 
-Cure::Cure() : AMateria()
+Cure::Cure()
 {
-	
+	this->AMateria::_type = "cure";
 }
 
-Cure::Cure(std::string const &type) : AMateria(type)
+Cure::Cure(std::string const &type)
 {
-	
+	this->AMateria::_type = type;
 }
 
 Cure::Cure(const Cure &src)
@@ -34,7 +34,7 @@ Cure::~Cure()
 
 Cure &Cure::operator=(const Cure &src)
 {
-	this->_type = src.getType();
+	this->AMateria::_type = src.getType();
 	return *this;
 }
 

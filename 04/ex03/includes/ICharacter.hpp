@@ -6,17 +6,16 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:30:23 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/14 15:52:52 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/14 18:14:39 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ICHARACTER_HPP
 #define ICHARACTER_HPP
 
-#include <iostream>
 #include "AMateria.hpp"
-#include "Ice.hpp"
-#include "Cure.hpp"
+
+class AMateria;
 
 class ICharacter
 {
