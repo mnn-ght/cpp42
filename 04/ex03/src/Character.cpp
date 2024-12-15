@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:22:51 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/15 17:28:59 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/15 17:48:13 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void Character::unequip(int idx)
 		else
 			this->_OnFloor->add_node(this->_inventory[idx]);
 		this->_NbOnFloor++;
+		std::cout << "\e[34m" << *this->_inventory[idx] << " Materia was unequipped successfully from " << this->_name << "'s inventory.\e[0m" << std::endl;
 		this->_inventory[idx] = NULL;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 17:49:01 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/15 17:33:01 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/15 17:42:45 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ void MateriaSource::learnMateria(AMateria* m)
 		}
 	}
 	if (j == 0)
-		std::cout << "\e[31mThis MateriaSource can't learn new Materias.\e[0m" << std::endl;
+	{
+		std::cout << "\e[31mThis MateriaSource can't learn new Materias. It has already learned 4 Materias.\e[0m" << std::endl;
+		delete m;
+	}
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
