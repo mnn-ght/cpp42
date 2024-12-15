@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/14 18:32:08 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/15 17:29:20 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,16 @@ int main( void )
 	
 	ICharacter* bob = new Character("bob");
 	
+	me->getstatus();
 	me->use(0, *bob);
 	me->use(1, *bob);
-	me->unequip(1);
+	// me->unequip(0);
+	me->getstatus();
+	
+	me->use(0, *bob);
+	// me->unequip(1);
+	me->use(0, *bob);
+	me->getstatus();
 
 	delete bob;
 	delete me;

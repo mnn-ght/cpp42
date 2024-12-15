@@ -1,34 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ICharacter.hpp                                     :+:      :+:    :+:   */
+/*   OnFloor.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 14:30:23 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/15 17:18:42 by magahat          ###   ########.fr       */
+/*   Created: 2024/12/15 12:50:56 by magahat           #+#    #+#             */
+/*   Updated: 2024/12/15 17:21:08 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICHARACTER_HPP
-#define ICHARACTER_HPP
+#ifndef ONFLOOR_HPP
+#define ONFLOOR_HPP
 
 #include "AMateria.hpp"
-#include "OnFloor.hpp"
 
 class AMateria;
-class OnFloor;
 
-class ICharacter
+class OnFloor
 {
-	public:
-		virtual ~ICharacter() {}
-		
-		virtual std::string const & getName() const = 0;
-		virtual void equip(AMateria* m) = 0;
-		virtual void unequip(int idx) = 0;
-		virtual void use(int idx, ICharacter& target) = 0;
-		virtual void getstatus() const = 0;
+private:
+	AMateria *_MatOnFloor[1];
+	OnFloor *_next;
+	OnFloor *_prev;
+
+public:
+	OnFloor();
+	OnFloor(AMateria *newMateria);
+	OnFloor(const OnFloor &src);
+
+	OnFloor &operator=(const OnFloor &src);
+	
+	~OnFloor();
+
+	AMateria *getMateria() const;
+	OnFloor *getNext() const;
+
+	OnFloor* add_node(AMateria *newMateria);
+	OnFloor* go_first_node();
+	void delete_nodes();
 };
 
 #endif

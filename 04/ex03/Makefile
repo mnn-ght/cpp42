@@ -10,7 +10,7 @@ SRC_PATH = src/
 OBJ_PATH = obj/
 
 #################### SRC & OBJ ####################
-SRC = main.cpp AMateria.cpp MateriaSource.cpp Character.cpp Cure.cpp Ice.cpp
+SRC = main.cpp AMateria.cpp MateriaSource.cpp Character.cpp Cure.cpp Ice.cpp OnFloor.cpp
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 OBJ = $(SRC:.cpp=.o)
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))

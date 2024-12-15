@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 13:38:10 by magahat           #+#    #+#             */
-/*   Updated: 2024/12/14 18:31:22 by magahat          ###   ########.fr       */
+/*   Updated: 2024/12/15 16:35:36 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ AMateria* Cure::clone() const
 
 void Cure::use(ICharacter& target)
 {
-	std::cout << "* shoots an Cure bolt at " << target << " *" << std::endl;
+	std::cout << "* heals " << target << "'s wounds *" << std::endl;
 }
