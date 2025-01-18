@@ -28,7 +28,7 @@ private:
 	
 public:
 	Form();
-	// Form(const Form &other);
+	Form(const Form &other);
 	
 	Form(std::string name, int gradeToSign, int gradeToExecute);
 	~Form();

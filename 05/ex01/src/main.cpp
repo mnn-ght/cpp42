@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/15 16:27:42 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/18 11:54:01 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int main( void )
 	try {
 		Bureaucrat	officer("Manon", 2);
 		Form	paper("Laisser passer A38", 58, 23);
-		std::cout << officer << std::endl;
-		std::cout << paper << std::endl;
+		std::cout << officer;
+		std::cout << paper;
 		officer.signForm(paper);
-		std::cout << paper << std::endl;
+		std::cout << paper;
 	}
 	catch (Form::GradeTooHighException &e) {
 		std::cerr << "\e[1;31mGrade too high : TooHighException.\e[0m" << std::endl;
@@ -70,8 +70,8 @@ int main( void )
 	try {
 		Bureaucrat	officer("Manon", 100);
 		Form	paper("Laisser passer A38", 58, 23);
-		std::cout << officer << std::endl;
-		std::cout << paper << std::endl;
+		std::cout << officer;
+		std::cout << paper;
 		officer.signForm(paper);
 	}
 	catch (Bureaucrat::GradeTooHighException &e) {
@@ -86,12 +86,12 @@ int main( void )
 	try {
 		Bureaucrat	officer("Manon", 2);
 		Form	paper("Laisser passer A38", 58, 23);
-		std::cout << officer << std::endl;
-		std::cout << paper << std::endl;
+		std::cout << officer;
+		std::cout << paper;
 		officer.signForm(paper);
-		std::cout << paper << std::endl;
+		std::cout << paper;
 		officer.signForm(paper);
-		std::cout << paper << std::endl;
+		std::cout << paper;
 	}
 	catch (Form::GradeTooHighException &e) {
 		std::cerr << "\e[1;31mGrade too high : TooHighException.\e[0m" << std::endl;

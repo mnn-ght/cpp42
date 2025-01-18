@@ -27,9 +27,11 @@ Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name),
 Form::Form(void) : _name("Manon"), _isSigned(0), _requiredGradeSign(90), _requiredGradeExecute(30) {
 }
 
-/* Form::Form(const Form &other) {
+Form::Form(const Form &other) : _name(""), _isSigned(0), _requiredGradeSign(1), _requiredGradeExecute(1)
+{
 	*this = other;
-} */
+}
+
 
 /*
 	DESTRUCTORS
@@ -87,7 +89,10 @@ Form &Form::beSigned(const Bureaucrat &officer) {
 	if (officer.getGrade() > this->_requiredGradeSign)
 		throw GradeTooLowException();
 	else
+	{
 		_isSigned = 1;
+		std::cout << "\e[3;32m" << officer.getName() << " signed '" << this->_name << "'.\e[0m" << std::endl;
+	}
 	return *this;
 }
 
