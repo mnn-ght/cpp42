@@ -87,11 +87,11 @@ Bureaucrat &Bureaucrat::decrementGrade() {
 Bureaucrat &Bureaucrat::signForm(AForm &paper) {
 	try {
 		if (paper.getIsSigned() == 1)
-			throw AForm::AlreadySignedException();
+			throw 1;
 		else
 			paper.beSigned(*this);
 	}
-	catch (AForm::AlreadySignedException) {
+	catch (int n) {
 		std::cerr << "\e[1;31m" << this->_name << " couldn't sign '" << paper.getName() << "' because the form was already signed." << "\e[0m" << std::endl;
 	}
 	catch (AForm::GradeTooLowException) {
@@ -104,11 +104,11 @@ Bureaucrat &Bureaucrat::executeForm(const AForm &form)
 {
 	try {
 		if (form.getIsSigned() == 0)
-			throw AForm::UnsignedFormException();
+			throw 1;
 		else
 			form.execute(*this);
 	}
-	catch (AForm::UnsignedFormException) {
+	catch (int n) {
 		std::cerr << "\e[1;31m" << this->_name << " couldn't execute '" << form.getName() << "' because the form isn't signed." << "\e[0m" << std::endl;
 	}
 	catch (AForm::GradeTooLowException) {

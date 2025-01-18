@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                     :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:48:01 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/15 13:53:22 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/18 12:05:56 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
 #include <iostream>
-#include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
-class Bureaucrat;
+class AForm;
 
-class Form
+class Bureaucrat
 {
 private:
 	std::string const _name;
-	bool	_isSigned;
-	int const	_requiredGradeSign;
-	int const	_requiredGradeExecute;
+	int	_grade;
 	
 public:
-	Form();
-	Form(const Form &other);
+	Bureaucrat();
+	Bureaucrat(const Bureaucrat &Bureaucrat);
 	
-	Form(std::string name, int gradeToSign, int gradeToExecute);
-	~Form();
+	Bureaucrat(std::string name, int grade);
+	~Bureaucrat();
 
-	Form &operator=(const Form &other);
+	Bureaucrat &operator=(const Bureaucrat &other);
 
 	class GradeTooHighException: public std::exception {
 		public:
@@ -45,19 +43,16 @@ public:
 			const char* what() const throw();
 	};
 
-	class AlreadySignedException: public std::exception {
-		public:
-			const char* what() const throw();
-	};
-
 	const std::string	&getName() const;
-	const bool	&getIsSigned() const;
-	const int	&getGradeToSign() const;
-	const int	&getGradeToExecute() const;
+	const int	&getGrade() const;
 
-	Form &beSigned(const Bureaucrat &officer);
+	Bureaucrat &incrementGrade();
+	Bureaucrat &decrementGrade();
+	
+	Bureaucrat &signForm(AForm &paper);
+	Bureaucrat &executeForm(const AForm &form);
 };
 
-std::ostream	&operator<<(std::ostream& out, const Form &Form);
+std::ostream	&operator<<(std::ostream& out, const Bureaucrat &bureaucrat);
 
 #endif

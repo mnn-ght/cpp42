@@ -104,3 +104,7 @@ const char* Form::GradeTooHighException::what() const throw() {
 const char* Form::GradeTooLowException::what() const throw() {
 	return "Grade too low.";
 }
+
+const char* Form::AlreadySignedException::what() const throw() {
+	return "Form already signed.";
+}

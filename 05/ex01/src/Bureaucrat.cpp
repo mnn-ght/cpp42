@@ -88,12 +88,12 @@ Bureaucrat &Bureaucrat::decrementGrade() {
 Bureaucrat &Bureaucrat::signForm(Form &paper) {
 	try {
 		if (paper.getIsSigned() == 1)
-			throw 1;
+			throw Form::AlreadySignedException();
 		else
 			paper.beSigned(*this);
 	}
-	catch (int n) {
-		std::cerr << "\e[1;31m" << this->_name << " couldn't sign '" << paper.getName() << "' because the form was already signed." << "\e[0m" << std::endl;
+	catch (Form::AlreadySignedException) {
+		std::cerr << "\e[1;31m" << this->_name << " couldn't sign '" << paper.getName() << "' because the form is already signed." << "\e[0m" << std::endl;
 	}
 	catch (Form::GradeTooLowException) {
 		std::cerr << "\e[1;31m" << this->_name << " couldn't sign '" << paper.getName() << "' because its grade was too low." << "\e[0m" << std::endl;
