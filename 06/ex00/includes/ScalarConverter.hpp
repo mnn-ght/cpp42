@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:34:28 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/18 16:36:45 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/19 14:19:25 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #define SCALARCONVERTER_HPP
 
 #include <iostream>
+#include <cstdlib>
 
 class ScalarConverter
 {
