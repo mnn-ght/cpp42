@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:37:09 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/19 14:17:28 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/20 10:20:18 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,95 +40,113 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 	return *this;
 }
 
-bool	IsStringConvertible(const std::string &s) {
+std::string	typeString(const std::string &s) {
 	std::string charOK = ".-+f";
 	bool	point = 0, sign = 0;
+
+	if (s.length() == 1 && !isdigit(s[0]))
+		return "char";
+	
 	for (size_t i = 0; i < s.length(); i++)
 	{
-		if (!isdigit(s[i]) && charOK.find(s[i]) == std::string::npos)
-		{
-			std::cout << "digit pas ok ou find pas ok = " << s[i] << std::endl;
-			return 0;
-		}
-		else if (s[i] == 'f' && i != s.length() - 1)
-		{
-			std::cout << "F pas ok" << std::endl;
-			return 0;
-		}
+		if (!isdigit(s[i]) && charOK.find(s[i]) == std::string::npos) // character pas accept&
+			return "false";
 		else if (charOK.find(s[i]) != std::string::npos)
 		{
-			if (s[i] == '.' && point == 1)
-			{
-				std::cout << "point pas ok" << std::endl;
-				return 0;
-			}
-			else if (s[i] == '.' && point == 0)
+			if ((s[i] == '+' || s[i] == '-') && sign == 0 && i == 0)
+				sign = 1;
+			else if (s[i] == '.' && point == 0 && i != 0 && i != s.length() - 1)
 				point = 1;
-			else if ((s[i] == '+' || s[i] == '-') && sign == 1)
-			{
-				std::cout << "sign pas ok" << std::endl;
-				return 0;
-			}
-			else if ((s[i] == '+' || s[i] == '-') && sign == 1)
-				sign = 1;				
+			else if (s[i] == 'f' && (i != s.length() - 1 || point == 0)) // f trouv& dans la chaine de character pas a la fin et sans point
+				return "false";
+			else if (s[i] == '.' && (point == 1 || i == 0 || i == s.length() - 1)) // 2 points ou 1er character
+				return "false";
+			else if ((s[i] == '+' || s[i] == '-') && (sign == 1 || i != 0))
+				return "false";
 		}
 	}
-	return (1);
+	if (point == 1)
+	{
+		if (s[s.length() - 1] == 'f')
+			return "float";
+		else
+			return "double";
+	}
+	else
+		return "int";
 }
 
-/* bool	IsPrintable(int	n) {
-	
-} */
+bool isPritable(int n)
+{
+	if (n >= 32 && n <= 126)
+		return true;
+	return false;
+}
 
 void	ScalarConverter::convert(const std::string &s) {
-	std::string pseudoLiteralsDouble[3] = {"-inf", "+inf", "nan"};
-	std::string pseudoLiteralsFloat[3] = {"-inff", "+inff", "nanf"};
-	std::string	toChar;
-	int		toInt = 0;
-	float	toFloat = 0;
-	double	toDouble = 0;
+	std::string	type;
+	char	toChar;
+	int		toInt;
+	float	toFloat;
+	double	toDouble;
+	std::string pseudoLiteralsFloat[4] = {"-inff", "+inff", "nanf", "inff"};
+	std::string pseudoLiteralsDouble[4] = {"-inf", "+inf", "nan", "inf"};
+	std::string plusSign = "";
 	
-	for (size_t i = 0; i < 3; i++)
+	for (size_t i = 0; i < 4; i++)
 	{
-		if (s == pseudoLiteralsDouble[i] || s == pseudoLiteralsFloat[i])
+		if (i == 3)
+			plusSign = "+";
+		if (s == pseudoLiteralsDouble[i])
 		{
+			toDouble = std::atof(s.c_str());
+			toFloat = static_cast<float>(toDouble);
 			std::cout << "char: impossible" << std::endl;
 			std::cout << "int: impossible" << std::endl;
-			std::cout << "float: " << pseudoLiteralsFloat[i] << std::endl;
-			std::cout << "double: " << pseudoLiteralsDouble[i] << std::endl;
+			std::cout << "float: " << plusSign << toFloat << "f" << std::endl;
+			std::cout << "double: " << plusSign << toDouble << std::endl;
+			return ;
+		}
+		else if (s == pseudoLiteralsFloat[i])
+		{
+			toFloat = std::atof(s.c_str());
+			toDouble = static_cast<double>(toFloat);
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+			std::cout << "float: " << toFloat << "f" << std::endl;
+			std::cout << "double: " << toDouble << std::endl;
 			return ;
 		}
 	}
 	
-	if (IsStringConvertible(s))
+	type = typeString(s);
+	if (type == "char")
+	{
+		toChar = static_cast<char>(s[0]);
+		toInt = static_cast<int>(toChar);
+		toFloat = static_cast<float>(toChar);
+		toDouble = static_cast<double>(toChar);
+	}
+	else if (type == "int")
 	{
 		toInt = std::atoi(s.c_str());
-		if (s[s.length() - 1] == 'f')
-		{
-			toFloat = std::atof(s.c_str());
-			toDouble = static_cast<double>(toFloat);
-		}
-		else
-		{
-			toDouble = std::atof(s.c_str());
-			toFloat = static_cast<float>(toDouble);
-		}
-		if (toInt >= 32 && toInt <= 126)
-			toChar = static_cast<char>(toInt);
-		else
-			toChar = "Non displayable";
-		std::cout << "char: " << toChar << std::endl;
-		std::cout << "int: " << toInt << std::endl;
-		if (toFloat - static_cast<int>(toFloat) == 0)
-		{
-			std::cout << "float: " << toFloat << ".0f" << std::endl;
-			std::cout << "double: " << toDouble << ".0" << std::endl;
-		}
-		else
-		{
-			std::cout << "float: " << toFloat << "f" << std::endl;
-			std::cout << "double: " << toDouble << std::endl;
-		}
+		toChar = static_cast<char>(toInt);
+		toFloat = static_cast<float>(toInt);
+		toDouble = static_cast<double>(toInt);
+	}
+	else if (type == "float")
+	{
+		toFloat = std::atof(s.c_str());
+		toChar = static_cast<char>(toFloat);
+		toInt = static_cast<int>(toFloat);
+		toDouble = static_cast<double>(toFloat);
+	}
+	else if (type == "double")
+	{
+		toDouble = std::atof(s.c_str());
+		toChar = static_cast<char>(toDouble);
+		toInt = static_cast<int>(toDouble);
+		toFloat = static_cast<float>(toDouble);
 	}
 	else
 	{
@@ -139,5 +157,19 @@ void	ScalarConverter::convert(const std::string &s) {
 		return ;
 	}
 	
-	
+	if (isPritable(toInt))
+		std::cout << "char: '" << toChar << "'" << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+	std::cout << "int: " << toInt << std::endl;
+	if (toFloat - toInt == 0)
+	{
+		std::cout << "float: " << toFloat << ".0f" << std::endl;
+		std::cout << "double: " << toDouble << ".0" << std::endl;
+	}
+	else
+	{
+		std::cout << "float: " << toFloat << "f" << std::endl;
+		std::cout << "double: " << toDouble << std::endl;
+	}
 }

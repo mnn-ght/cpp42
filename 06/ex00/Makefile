@@ -39,28 +39,19 @@ re: fclean all
 #################### RULES ####################
 run: all
 	@clear
-	@printf "\e[1;31mcalculs en cours ◾◽◽◽◽◽◽◽\n"
+	@printf "\e[1;32mcalculs en cours ◾◽◽◽◽\n"
 	@sleep 0.2
 	@clear
-	@printf "calculs en cours ◾◾◽◽◽◽◽◽\n"
+	@printf "calculs en cours ◾◾◽◽◽\n"
 	@sleep 0.2
 	@clear
-	@printf "calculs en cours ◾◾◾◽◽◽◽◽\n"
+	@printf "calculs en cours ◾◾◾◽◽\n"
 	@sleep 0.2
 	@clear
-	@printf "calculs en cours ◾◾◾◾◽◽◽◽\n"
+	@printf "calculs en cours ◾◾◾◾◽\n"
 	@sleep 0.2
 	@clear
-	@printf "calculs en cours ◾◾◾◾◾◽◽◽\n"
-	@sleep 0.2
-	@clear
-	@printf "calculs en cours ◾◾◾◾◾◾◽◽\n"
-	@sleep 0.2
-	@clear
-	@printf "calculs en cours ◾◾◾◾◾◾◾◽\n"
-	@sleep 0.2
-	@clear
-	@printf "calculs en cours ◾◾◾◾◾◾◾◾\e[0m\n"
+	@printf "calculs en cours ◾◾◾◾◾\n"
 	@sleep 0.2
 	@clear
 	@printf "\e[1;32mcalculs effectué ✅\e[0m\n"
@@ -74,6 +65,19 @@ run: all
 	@sleep 0.2
 	@printf "\n\e[1;32m====== TEST 3 ======\e[0m\n"
 	./$(NAME) 42.0f
+	@sleep 0.2
+	@printf "\n\e[1;32m====== TEST 4 ======\e[0m\n"
+	./$(NAME) -42f
+	@sleep 0.2
+	@printf "\n\e[1;32m====== TEST 5 ======\e[0m\n"
+	./$(NAME) sdlfh
+	@sleep 0.2
+	@printf "\n\e[1;32m====== TEST 6 ======\e[0m\n"
+	./$(NAME) -inf
+	@sleep 0.2
+	@printf "\n\e[1;32m====== TEST 7 ======\e[0m\n"
+	./$(NAME) inff
+	@sleep 0.2
 
 val:
 	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./$(NAME)
