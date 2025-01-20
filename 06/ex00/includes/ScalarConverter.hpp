@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:34:28 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/20 09:47:07 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/20 10:53:48 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <climits>
+#include <float.h>
 
 class ScalarConverter
 {

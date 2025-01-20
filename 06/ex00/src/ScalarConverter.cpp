@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:37:09 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/20 10:20:18 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/20 11:11:58 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ std::string	typeString(const std::string &s) {
 				return "false";
 		}
 	}
+	
 	if (point == 1)
 	{
 		if (s[s.length() - 1] == 'f')
@@ -73,7 +74,11 @@ std::string	typeString(const std::string &s) {
 			return "double";
 	}
 	else
+	{
+		if (std::atoll(s.c_str()) > INT_MAX || std::atoll(s.c_str()) < INT_MIN)
+			return "int overflow";
 		return "int";
+	}
 }
 
 bool isPritable(int n)
@@ -85,10 +90,11 @@ bool isPritable(int n)
 
 void	ScalarConverter::convert(const std::string &s) {
 	std::string	type;
-	char	toChar;
-	int		toInt;
-	float	toFloat;
-	double	toDouble;
+	char	toChar = 0;
+	int		toInt = 0;
+	float	toFloat = 0;
+	double	toDouble = 0;
+	long long checkIntLimit = 0;
 	std::string pseudoLiteralsFloat[4] = {"-inff", "+inff", "nanf", "inff"};
 	std::string pseudoLiteralsDouble[4] = {"-inf", "+inf", "nan", "inf"};
 	std::string plusSign = "";
@@ -140,6 +146,7 @@ void	ScalarConverter::convert(const std::string &s) {
 		toChar = static_cast<char>(toFloat);
 		toInt = static_cast<int>(toFloat);
 		toDouble = static_cast<double>(toFloat);
+		checkIntLimit = static_cast<long long>(toFloat);
 	}
 	else if (type == "double")
 	{
@@ -147,13 +154,16 @@ void	ScalarConverter::convert(const std::string &s) {
 		toChar = static_cast<char>(toDouble);
 		toInt = static_cast<int>(toDouble);
 		toFloat = static_cast<float>(toDouble);
+		checkIntLimit = static_cast<long long>(toDouble);
 	}
-	else
+	else if (type == "int overflow")
 	{
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: impossible" << std::endl;
-		std::cout << "double: impossible" << std::endl;
+		std::cout << "String represent a number outside of limits : " << type << "." << std::endl;
+		return ;
+	}
+	else if (type == "false")
+	{
+		std::cout << "No type can be recognizes from the string: error syntax." << std::endl;
 		return ;
 	}
 	
@@ -161,7 +171,10 @@ void	ScalarConverter::convert(const std::string &s) {
 		std::cout << "char: '" << toChar << "'" << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
-	std::cout << "int: " << toInt << std::endl;
+	if ((type == "float" || type == "double") && (checkIntLimit > INT_MAX || checkIntLimit < INT_MIN))
+		std::cout << "int: Overflow" << std::endl;
+	else
+		std::cout << "int: " << toInt << std::endl;
 	if (toFloat - toInt == 0)
 	{
 		std::cout << "float: " << toFloat << ".0f" << std::endl;
