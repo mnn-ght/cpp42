@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:37:09 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/20 11:11:58 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/20 13:24:34 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,38 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 	return *this;
 }
 
+bool isPritable(int n)
+{
+	if (n >= 32 && n <= 126)
+		return true;
+	return false;
+}
+
+bool isPossible(int n)
+{
+	std::cout << n << std::endl;
+	if (n < -128 || n > 127)
+		return false;
+	return true;
+}
+
+bool isDigit(int n)
+{
+	if (n >= 48 && n <= 57)
+		return true;
+	return false;
+}
+
 std::string	typeString(const std::string &s) {
 	std::string charOK = ".-+f";
 	bool	point = 0, sign = 0;
 
-	if (s.length() == 1 && !isdigit(s[0]))
+	if (s.length() == 1 && !isDigit(s[0]))
 		return "char";
 	
 	for (size_t i = 0; i < s.length(); i++)
 	{
-		if (!isdigit(s[i]) && charOK.find(s[i]) == std::string::npos) // character pas accept&
+		if (!isDigit(s[i]) && charOK.find(s[i]) == std::string::npos) // character pas accept&
 			return "false";
 		else if (charOK.find(s[i]) != std::string::npos)
 		{
@@ -75,21 +97,37 @@ std::string	typeString(const std::string &s) {
 	}
 	else
 	{
-		if (std::atoll(s.c_str()) > INT_MAX || std::atoll(s.c_str()) < INT_MIN)
+		if ((static_cast<long long>(std::atof(s.c_str())) > INT_MAX || static_cast<long long>(std::atof(s.c_str())) < INT_MIN))
 			return "int overflow";
 		return "int";
 	}
 }
 
-bool isPritable(int n)
+/* void	printFromChar(char c)
 {
-	if (n >= 32 && n <= 126)
-		return true;
-	return false;
+	std::cout << "char : " << c << std::endl;
+	std::cout << "int: " << static_cast<int>(c) << std::endl;
+	std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
 }
 
+void	printFromInt(int i)
+{
+	
+}
+
+void	printFromFloat(float f)
+{
+	
+}
+
+void	printFromDouble(double d)
+{
+	
+} */
+
 void	ScalarConverter::convert(const std::string &s) {
-	std::string	type;
+	std::string	type = "find type";
 	char	toChar = 0;
 	int		toInt = 0;
 	float	toFloat = 0;
@@ -97,82 +135,67 @@ void	ScalarConverter::convert(const std::string &s) {
 	long long checkIntLimit = 0;
 	std::string pseudoLiteralsFloat[4] = {"-inff", "+inff", "nanf", "inff"};
 	std::string pseudoLiteralsDouble[4] = {"-inf", "+inf", "nan", "inf"};
-	std::string plusSign = "";
 	
-	for (size_t i = 0; i < 4; i++)
-	{
-		if (i == 3)
-			plusSign = "+";
+	for (size_t i = 0; i < 4; i++) {
 		if (s == pseudoLiteralsDouble[i])
-		{
-			toDouble = std::atof(s.c_str());
-			toFloat = static_cast<float>(toDouble);
-			std::cout << "char: impossible" << std::endl;
-			std::cout << "int: impossible" << std::endl;
-			std::cout << "float: " << plusSign << toFloat << "f" << std::endl;
-			std::cout << "double: " << plusSign << toDouble << std::endl;
-			return ;
-		}
+			type = "double";
 		else if (s == pseudoLiteralsFloat[i])
-		{
-			toFloat = std::atof(s.c_str());
-			toDouble = static_cast<double>(toFloat);
-			std::cout << "char: impossible" << std::endl;
-			std::cout << "int: impossible" << std::endl;
-			std::cout << "float: " << toFloat << "f" << std::endl;
-			std::cout << "double: " << toDouble << std::endl;
-			return ;
-		}
+			type = "float";
 	}
 	
-	type = typeString(s);
-	if (type == "char")
-	{
+	if (type == "find type")
+		type = typeString(s);
+	
+	if (type == "char") {
+		// printFromChar(static_cast<char>(s[0]));
 		toChar = static_cast<char>(s[0]);
 		toInt = static_cast<int>(toChar);
 		toFloat = static_cast<float>(toChar);
 		toDouble = static_cast<double>(toChar);
 	}
-	else if (type == "int")
-	{
+	else if (type == "int") {
 		toInt = std::atoi(s.c_str());
+		if (isPritable(toChar))
+			std::cout << "char: '" << toChar << "'" << std::endl;
+		else if (isPossible(toChar))
+			std::cout << "char: Non displayable" << std::endl;
+		else
+			std::cout << "char: impossible" << std::endl;
 		toChar = static_cast<char>(toInt);
 		toFloat = static_cast<float>(toInt);
 		toDouble = static_cast<double>(toInt);
 	}
-	else if (type == "float")
-	{
+	else if (type == "float") {
 		toFloat = std::atof(s.c_str());
 		toChar = static_cast<char>(toFloat);
 		toInt = static_cast<int>(toFloat);
 		toDouble = static_cast<double>(toFloat);
 		checkIntLimit = static_cast<long long>(toFloat);
 	}
-	else if (type == "double")
-	{
+	else if (type == "double") {
 		toDouble = std::atof(s.c_str());
 		toChar = static_cast<char>(toDouble);
 		toInt = static_cast<int>(toDouble);
 		toFloat = static_cast<float>(toDouble);
 		checkIntLimit = static_cast<long long>(toDouble);
 	}
-	else if (type == "int overflow")
-	{
+	else if (type == "int overflow") {
 		std::cout << "String represent a number outside of limits : " << type << "." << std::endl;
 		return ;
 	}
-	else if (type == "false")
-	{
+	else if (type == "false") {
 		std::cout << "No type can be recognizes from the string: error syntax." << std::endl;
 		return ;
 	}
 	
-	if (isPritable(toInt))
+	if (isPritable(toChar))
 		std::cout << "char: '" << toChar << "'" << std::endl;
-	else
+	else if (isPossible(toChar))
 		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: impossible" << std::endl;
 	if ((type == "float" || type == "double") && (checkIntLimit > INT_MAX || checkIntLimit < INT_MIN))
-		std::cout << "int: Overflow" << std::endl;
+		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << toInt << std::endl;
 	if (toFloat - toInt == 0)

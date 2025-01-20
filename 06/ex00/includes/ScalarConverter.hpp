@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:34:28 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/20 10:53:48 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/20 13:14:16 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ class ScalarConverter
 	private:
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter &ScalarConverter);
-		~ScalarConverter();
 		ScalarConverter &operator=(const ScalarConverter &other);
 	
 	public:
+		~ScalarConverter();
 		static void convert(const std::string &s);
 };
 

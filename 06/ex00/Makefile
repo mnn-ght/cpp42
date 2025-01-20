@@ -83,4 +83,4 @@ run: all
 	@sleep 0.2
 
 val:
-	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./$(NAME)
+	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./$(NAME) 42
