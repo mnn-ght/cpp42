@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:34:28 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/20 15:15:28 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/22 11:51:51 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,23 @@
 #define WHATEVER_HPP
 
 #include <iostream>
-#include <cstdlib>
-#include <climits>
-#include <float.h>
 
-class Whatever
-{
-	private:
-		Whatever();
-		Whatever(const Whatever &Whatever);
-		Whatever &operator=(const Whatever &other);
-	
-	public:
-		~Whatever();
-		static void convert(const std::string &s);
-};
+template< typename T >
+void	swap(T &x, T &y) {
+	T tmp = x;
+	x = y;
+	y = tmp;
+	return ;
+}
+
+template< typename T >
+T	const &max(T const &x, T const &y) {
+	return (x >= y ? x : y);
+}
+
+template< typename T >
+T	const &min(T const &x, T const &y) {
+	return (x >= y ? y : x);
+}
 
 #endif
