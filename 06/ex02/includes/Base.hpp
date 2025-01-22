@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 11:53:01 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/20 12:47:53 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/22 11:03:06 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <exception>
 
 class Base
 {

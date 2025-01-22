@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   B.hpp                                              :+:      :+:    :+:   */
+/*   D.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 11:53:01 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/22 11:08:04 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/22 11:11:46 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef B_HPP
-#define B_HPP
+#ifndef D_HPP
+#define D_HPP
 
 #include <iostream>
 #include "Base.hpp"
 
-class B: public Base
+class D: public Base
 {};
 
 #endif
