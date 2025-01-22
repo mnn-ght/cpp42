@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:34:28 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/20 15:15:24 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/22 12:16:36 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,18 @@
 #define ITER_HPP
 
 #include <iostream>
-#include <cstdlib>
-#include <climits>
-#include <float.h>
 
-class Iter
-{
-	private:
-		Iter();
-		Iter(const Iter &Iter);
-		Iter &operator=(const Iter &other);
+template< typename T>
+void	iter(T* ar, size_t len, void (*fct)(const T &)) {
+	std::cout << "--------- Iter ---------" << std::endl;
+	for (size_t i = 0; i < len; i++)
+		fct(ar[i]);
 	
-	public:
-		~Iter();
-		static void convert(const std::string &s);
 };
+
+template< typename T>
+void printT(const T &element) {
+	std::cout << element << std::endl;
+}
 
 #endif
