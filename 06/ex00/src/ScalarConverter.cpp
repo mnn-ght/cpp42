@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:37:09 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/20 14:58:31 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/20 15:19:27 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,10 +175,6 @@ void	printFromDouble(double d)
 
 void	ScalarConverter::convert(const std::string &s) {
 	std::string	type = "find type";
-	/* char	toChar = 0;
-	int		toInt = 0;
-	float	toFloat = 0;
-	double	toDouble = 0; */
 	std::string pseudoLiteralsFloat[4] = {"-inff", "+inff", "nanf", "inff"};
 	std::string pseudoLiteralsDouble[4] = {"-inf", "+inf", "nan", "inf"};
 	
@@ -194,40 +190,15 @@ void	ScalarConverter::convert(const std::string &s) {
 	
 	if (type == "char") {
 		printFromChar(static_cast<char>(s[0]));
-		/* toChar = static_cast<char>(s[0]);
-		toInt = static_cast<int>(toChar);
-		toFloat = static_cast<float>(toChar);
-		toDouble = static_cast<double>(toChar); */
 	}
 	else if (type == "int") {
 		printFromInt(std::atoi(s.c_str()));
-
-		/* toInt = std::atoi(s.c_str());
-		if (isPritable(toChar))
-			std::cout << "char: '" << toChar << "'" << std::endl;
-		else if (isPossible(toChar))
-			std::cout << "char: Non displayable" << std::endl;
-		else
-			std::cout << "char: impossible" << std::endl;
-		toChar = static_cast<char>(toInt);
-		toFloat = static_cast<float>(toInt);
-		toDouble = static_cast<double>(toInt); */
 	}
 	else if (type == "float") {
 		printFromFloat(std::atof(s.c_str()));
-		/* toFloat = std::atof(s.c_str());
-		toChar = static_cast<char>(toFloat);
-		toInt = static_cast<int>(toFloat);
-		toDouble = static_cast<double>(toFloat);
-		checkIntLimit = static_cast<long long>(toFloat); */
 	}
 	else if (type == "double") {
 		printFromDouble(std::atof(s.c_str()));
-		/* toDouble = std::atof(s.c_str());
-		toChar = static_cast<char>(toDouble);
-		toInt = static_cast<int>(toDouble);
-		toFloat = static_cast<float>(toDouble);
-		checkIntLimit = static_cast<long long>(toDouble); */
 	}
 	else if (type == "int overflow") {
 		std::cout << "String represent a number outside of limits : " << type << "." << std::endl;
@@ -237,25 +208,4 @@ void	ScalarConverter::convert(const std::string &s) {
 		std::cout << "No type can be recognizes from the string: error syntax." << std::endl;
 		return ;
 	}
-	
-	/* if (isPritable(toChar))
-		std::cout << "char: '" << toChar << "'" << std::endl;
-	else if (isPossible(toChar))
-		std::cout << "char: Non displayable" << std::endl;
-	else
-		std::cout << "char: impossible" << std::endl;
-	if ((type == "float" || type == "double") && (checkIntLimit > INT_MAX || checkIntLimit < INT_MIN))
-		std::cout << "int: impossible" << std::endl;
-	else
-		std::cout << "int: " << toInt << std::endl;
-	if (toFloat - toInt == 0)
-	{
-		std::cout << "float: " << toFloat << ".0f" << std::endl;
-		std::cout << "double: " << toDouble << ".0" << std::endl;
-	}
-	else
-	{
-		std::cout << "float: " << toFloat << "f" << std::endl;
-		std::cout << "double: " << toDouble << std::endl;
-	} */
 }
