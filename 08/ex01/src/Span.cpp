@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:28:22 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/23 11:55:03 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/23 12:25:47 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,10 @@ const char* Span::NoSpanFoundException::what() const throw() {
 	return "\e[1;31mThe number of element in store cannot make a calculation of span possible.\e[0m";
 }
 
+const char* Span::NoAddMoreNumber::what() const throw() {
+	return "\e[1;31mThe range of the function addMoreNumber between 'first' and 'last' is inferior to 1. It can't add numbers.\e[0m";
+}
+
 void Span::addMoreNumber(std::vector<int>::iterator first, std::vector<int>::iterator last) {
 	std::srand(time(NULL));
 	if (std::distance(first, last) > 0)
@@ -138,4 +142,6 @@ void Span::addMoreNumber(std::vector<int>::iterator first, std::vector<int>::ite
 			}
 		}
 	}
+	else
+		throw NoAddMoreNumber();
 }

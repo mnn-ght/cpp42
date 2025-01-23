@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:34:28 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/23 11:25:20 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/23 12:23:17 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ public:
 	~Span();
 	
 	void addNumber(int nb);
-	void addMoreNumber(std::vector<int>::iterator first, std::vector<int>::iterator last);
 	long shortestSpan();
 	long longestSpan();
 
@@ -48,6 +47,32 @@ public:
 	class NoSpanFoundException : public std::exception {
 		const char* what() const throw();
 	};
+
+	class NoAddMoreNumber : public std::exception {
+		const char* what() const throw();
+	};
+
+	/* template <typename InputIt>
+	void addMoreNumber(InputIt first, InputIt last) {
+		std::srand(time(NULL));
+		if (std::distance(first, last) > 0)
+		{
+			for (; first < last; first++)
+			{
+				try
+				{
+					addNumber(std::rand());
+				}
+				catch(const std::exception& e)
+				{
+					std::cerr << e.what() << std::endl;
+					return ;
+				}
+			}
+		}
+	}; */
+
+	void addMoreNumber(std::vector<int>::iterator first, std::vector<int>::iterator last);
 
 };
 
