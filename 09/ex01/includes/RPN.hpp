@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:34:28 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/26 12:18:44 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/26 17:41:04 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,28 @@
 #define RPN_HPP
 
 #include <iostream>
-#include <set>
+#include <list>
+#include <cstdlib>
+#include <sstream>
+#include <fstream>
+#include <sstream>
 
 class RPN
 {
 private:
-	std::set<char> numbers;
+	std::list<std::string> _numbers;
 	
 public:
 	RPN();
-	RPN(std::string filename);
+	RPN(std::string operations);
 	RPN(const RPN &other);
 	RPN &operator=(const RPN &other);
 	
 	~RPN() {};
+
+	class InputException : public std::exception {
+		const char* what() const throw();
+	};
 };
 
 
