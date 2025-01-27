@@ -42,7 +42,7 @@ run: all
 	./$(NAME) 3 5 9 7 4
 	@sleep 0.2
 	@printf "\n\e[1;32m====== TEST 2 ======\e[0m\n"
-	./$(NAME) `shuf -i 1-100000 -n 3000 | tr "\n" " "
+	./$(NAME) `shuf -i 1-100000 -n 3000 | tr "\n" " "`
 	@sleep 0.2
 	@printf "\n\e[1;32m====== TEST 3 ======\e[0m\n"
 	./$(NAME)  "-1" "2"
