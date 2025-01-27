@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:34:28 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/26 17:41:04 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/27 10:59:27 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <list>
+#include <stack>
 #include <cstdlib>
 #include <sstream>
 #include <fstream>
@@ -30,13 +31,24 @@ public:
 	RPN(std::string operations);
 	RPN(const RPN &other);
 	RPN &operator=(const RPN &other);
+
+	RPN &setNumbers(std::string &str);
+	void doCalc();
 	
-	~RPN() {};
+	~RPN();
 
 	class InputException : public std::exception {
 		const char* what() const throw();
 	};
+	class InputNumberException : public std::exception {
+		const char* what() const throw();
+	};
+	class InputFormatException : public std::exception {
+		const char* what() const throw();
+	};
 };
 
+int isCharacterOk(char c);
+std::list<std::string> toSplit(std::string str);
 
 #endif
