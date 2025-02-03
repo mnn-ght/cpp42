@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:34:28 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/27 12:13:01 by magahat          ###   ########.fr       */
+/*   Updated: 2025/01/28 12:14:59 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 
 #include <iostream>
 #include <set>
+#include <algorithm>
 #include <vector>
 #include <deque>
 #include <utility>
 #include <climits>
+#include <ctime>
 #include <cstdlib>
+#include <sys/time.h>
 
 
 class PmergeMe
@@ -39,7 +42,6 @@ public:
 	PmergeMe &operator=(const PmergeMe &other);
 	
 	void sortSequence();
-	void mergeInsertSort();
 
 	class InputErrorException : public std::exception {
 		const char* what() const throw();
@@ -48,5 +50,6 @@ public:
 	~PmergeMe();
 };
 
+double timediff(struct timeval Start, struct timeval End);
 
 #endif
