@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:34:28 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/22 14:05:18 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/05 13:12:44 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class Array
 private:
 	T *_ar;
 	unsigned int _len;
+	
 public:
 	Array() : _ar(NULL), _len(0){};
 	Array(unsigned int n) : _ar(NULL), _len(n) {
@@ -45,16 +46,17 @@ public:
 		return *this;
 	};
 
-	T &operator[](const unsigned int &index) {
-		if (index >= _len)
+	T &operator[](const int &index) {
+		if (index >= (int)_len || index < 0)
 			throw OutOfRangeException();
 		return _ar[index];
 	};
 
 	class OutOfRangeException : public std::exception {
-		const char* what() const throw() { return "The asked index is out of range : it's higher than the length of the array.";};
+		const char* what() const throw() { return "\e[1;31mThe asked index is out of range.\e[0m";};
 	};
 
+	unsigned int size() const { return _len; };
 	
 	~Array() {
 		if (_ar != NULL)
@@ -63,10 +65,5 @@ public:
 			_ar = NULL;
 		}
 	};
-
-	unsigned int size() const { return _len; };
 };
-
-
-
 #endif

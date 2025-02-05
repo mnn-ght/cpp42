@@ -6,11 +6,14 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/22 14:22:18 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/05 13:15:55 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cstdlib>
+#include <iostream>
 #include "../includes/Array.hpp"
+#define MAX_VAL 750
 
 int main( void ) {
 	// int *a = new int();
@@ -44,7 +47,7 @@ int main( void ) {
 		std::cerr << e.what() << std::endl;
 	}
 	
-	std::cout << "\e[1;32m=== a = b ===\e[0m" << std::endl;
+	std::cout << "\e[1;32m=== b = a ===\e[0m" << std::endl;
 	b = a;
 	try
 	{
@@ -72,8 +75,7 @@ int main( void ) {
 
 	Array<std::string> d(5);
 	std::cout << "\e[1;32m=== Array<std::string> d(5) ===\e[0m" << std::endl;
-	for (size_t i = 0; i < 5; i++)
-	{
+	for (size_t i = 0; i < 5; i++) {
 		std::ostringstream	ofs;
 		ofs << "string number " << i;
 		d[i] = ofs.str();
@@ -81,17 +83,75 @@ int main( void ) {
 	try
 	{
 		std::cout << "d[2] = " << d[2] << std::endl;
+		std::cout << "d[5] = " << d[5] << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
 	
-	std::cout << "\e[1;32m=== Array<std::string> e(10) && e = d ===\e[0m" << std::endl;
-	Array<std::string> e(10);
-	std::cout << "size before (e = d) = " << e.size() << std::endl;
-	e = d;
-	std::cout << "size after (e = d) = " << e.size() << std::endl;
+	std::cout << "\e[1;32m=== Array<std::string> f(10) && f = d ===\e[0m" << std::endl;
+	Array<std::string> f(10);
+	std::cout << "size of f before (f = d) = " << f.size() << std::endl;
+	std::cout << "size d = " << d.size() << std::endl;
+	f = d;
+	std::cout << "size of f after (f = d) = " << f.size() << std::endl;
+	try
+	{
+		std::cout << "f[2] = " << f[2] << std::endl;
+		std::cout << "f[5] = " << f[-2] << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
+	std::cout << "\e[1;32m=== Test subject ===\e[0m" << std::endl;
 
-	return 0;
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    //SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
+
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete [] mirror;//
+    return 0;
 }
