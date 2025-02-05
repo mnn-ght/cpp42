@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/22 15:17:01 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/05 14:08:06 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 #include <vector>
 #include <deque>
 
+#define TEST(nb, type) {std::cout << std::endl << "\e[1;32m========= TEST " << nb << " with container type : \e[1;34m" << type << "\e[1;32m =========\e[0m" << std::endl;}
+
 int main( void ) {
+	int i = 1;
 	std::list<int> lst1;
 	std::list<int> lst2;
 	std::vector<int> v1;
@@ -32,45 +35,61 @@ int main( void ) {
 	d1.push_back(42);
 	d1.push_back(100);
 	
+	TEST(i++, "list<int> remplie de 3 int {1, 42, 100}");
 	try
 	{
-		std::list<int>::iterator result = easyfind(lst1, 100);
-		std::cout << *result << std::endl;
+		std::cout << *easyfind(lst1, 100) << std::endl;
+		std::cout << *easyfind(lst1, 0) << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
 
+	TEST(i++, "list<int> vide");
 	try
 	{
-		std::list<int>::iterator result = easyfind(lst2, 0);
-		std::cout << *result << std::endl;
+		std::cout << *easyfind(lst2, 0) << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
 	
+	TEST(i++, "vector<int> remplie de 3 int {1, 42, 100}");
 	try
 	{
-		std::vector<int>::iterator result = easyfind(v1, 1);
-		std::cout << *result << std::endl;
+		std::cout << *easyfind(v1, 1) << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
 
+	TEST(i++, "deque<int> remplie de 3 int {1, 42, 100}");
 	try
 	{
-		std::deque<int>::iterator result = easyfind(d1, 42);
-		std::cout << *result << std::endl;
+		std::cout << *easyfind(d1, 42) << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
 
+	for (int i = 0; i < 100; i++)
+		lst2.push_back(i + 1);
+	
+	TEST(i++, "list<int> remplie de 100 int de 1 a 100");
+	try
+	{
+		std::cout << *easyfind(lst2, 42) << std::endl;
+		std::cout << *easyfind(lst2, 100) << std::endl;
+		std::cout << *easyfind(lst2, -42) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
 	return 0;
 }

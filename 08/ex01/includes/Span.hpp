@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:34:28 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/23 12:23:17 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/05 15:13:27 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 
 #include <iostream>
 #include <exception>
+#include <algorithm>
 #include <vector>
 #include <cstdlib>
 #include <iterator>
+#include <numeric>
 
 class Span
 {
 private:
 	unsigned int _maxN;
 	std::vector<int> _stock;
+	
 public:
 	Span(unsigned int N);
 	Span();

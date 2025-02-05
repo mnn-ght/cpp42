@@ -6,25 +6,28 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/23 12:28:06 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/05 15:41:02 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Span.hpp"
+#define TEST(nb, type) {std::cout << std::endl << "\e[1;32m========= TEST " << nb << " \e[1;34m" << type << "\e[1;32m =========\e[0m" << std::endl;}
 
 int main()
 {
-	std::cout << "\e[1;32m=========== TEST MAIN ===========\e[0m" << std::endl;
+	int i = 1;
+	TEST(i++, "du sujet");
+	
 	Span sp = Span(5);
 	sp.addNumber(6);
 	sp.addNumber(3);
 	sp.addNumber(17);
 	sp.addNumber(9);
 	sp.addNumber(11);
-	std::cout << "Shortest Span = " << sp.shortestSpan() << std::endl;
-	std::cout << "Longest Span = " << sp.longestSpan() << std::endl;
+	std::cout << "Shortest Span = " << sp.shortestSpan() << std::endl; // 2
+	std::cout << "Longest Span = " << sp.longestSpan() << std::endl; // 14
 
-	std::cout << "\e[1;32m=========== TEST error add 1 more ===========\e[0m" << std::endl;
+	TEST(i++, "error add 1 more");
 	try
 	{
 		std::cout << sp;
@@ -35,7 +38,7 @@ int main()
 		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << "\e[1;32m=========== TEST error span ===========\e[0m" << std::endl;
+	TEST(i++, "error span");
 
 	Span st(2);
 	try
@@ -65,8 +68,8 @@ int main()
 	{
 		st.addNumber(-42);
 		std::cout << st;
-		std::cout << "Shortest Span = " << st.shortestSpan() << std::endl;
-		std::cout << "Longest Span = " << st.longestSpan() << std::endl;
+		std::cout << "Shortest Span = " << st.shortestSpan() << std::endl; // 84
+		std::cout << "Longest Span = " << st.longestSpan() << std::endl; // 84
 	}
 	catch(const std::exception& e)
 	{
@@ -74,17 +77,33 @@ int main()
 	}
 
 
+	TEST(i++, "bcp de nombres (99)");
 
-	std::cout << "\e[1;32m=========== TEST bcp de nombres (random) ===========\e[0m" << std::endl;
-
-	Span so(10000);
+	Span so(99);
 	std::vector<int> x;
 	try
 	{
-		so.addMoreNumber(x.begin(), x.begin() + 10000);
+		so.addMoreNumber(x.begin(), x.begin() + 100);
 		std::cout << so;
 		std::cout << "Shortest Span = " << so.shortestSpan() << std::endl;
 		std::cout << "Longest Span = " << so.longestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+
+	TEST(i++, "encore plus de nombres (10 000)");
+
+	Span stock(10000);
+	std::vector<int> y;
+	try
+	{
+		stock.addMoreNumber(y.begin(), y.begin() + 10000);
+		std::cout << stock;
+		std::cout << "Shortest Span = " << stock.shortestSpan() << std::endl;
+		std::cout << "Longest Span = " << stock.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e)
 	{

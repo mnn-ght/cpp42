@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:28:22 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/23 12:25:47 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/05 15:45:28 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,41 +75,19 @@ void Span::addNumber(int nb) {
 }
 
 long Span::shortestSpan() {
-	long	span;
 	if (_stock.size() < 2)
 		throw NoSpanFoundException();
-	else
-	{
-		span = std::abs(*_stock.begin() - *(_stock.begin() + 1));
-		for (std::vector<int>::iterator it1 = _stock.begin(); it1 != _stock.end(); it1++)
-		{
-			for (std::vector<int>::iterator it2 = it1 + 1; it2 != _stock.end(); it2++)
-			{
-				if (std::labs(*it1 - *it2) < span)
-					span = std::abs(*it1 - *it2);
-			}
-		}
-	}
-	return span;
+	std::vector<int> sortedStock(_stock);
+	std::sort(sortedStock.begin(), sortedStock.end());
+	std::adjacent_difference(sortedStock.begin(), sortedStock.end(), sortedStock.begin());
+	
+	return *std::min_element(sortedStock.begin() + 1, sortedStock.end());
 }
 
 long Span::longestSpan() {
-	long	span;
 	if (_stock.size() < 2)
 		throw NoSpanFoundException();
-	else
-	{
-		span = std::abs(*_stock.begin() - *(_stock.begin() + 1));
-		for (std::vector<int>::iterator it1 = _stock.begin(); it1 != _stock.end(); it1++)
-		{
-			for (std::vector<int>::iterator it2 = it1 + 1; it2 != _stock.end(); it2++)
-			{
-				if (std::abs(*it1 - *it2) > span)
-					span = std::abs(*it1 - *it2);
-			}
-		}
-	}
-	return span;
+	return (std::abs(*std::min_element(_stock.begin(), _stock.end()) - *std::max_element(_stock.begin(), _stock.end())));
 }
 
 

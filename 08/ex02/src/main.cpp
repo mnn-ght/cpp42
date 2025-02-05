@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/26 10:53:33 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/05 16:03:36 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,22 @@ int main()
 	++it;
 	--it;
 	int i = 0;
+	std::cout << "\e[2;34m------------- iteration increment -------------\e[0m" << std::endl;
 	while (it != ite)
 	{
 		std::cout << "Number [" << i << "] = " << *it << std::endl;
 		++it;
 		i++;
+	}
+	i--;
+	MutantStack<int>::reverse_iterator rit = mstack.rbegin();
+	MutantStack<int>::reverse_iterator rite = mstack.rend();
+	std::cout << "\e[2;34m------------- iteration decrement -------------\e[0m" << std::endl;
+	while (rit != rite)
+	{
+		std::cout << "Number [" << i << "] = " << *rit << std::endl;
+		++rit;
+		i--;
 	}
 	std::cout << "top = " << mstack.top() << std::endl;
 	std::stack<int> s(mstack);
@@ -56,11 +67,22 @@ int main()
 	++lit;
 	--lit;
 	int j = 0;
+	std::cout << "\e[2;34m------------- iteration increment -------------\e[0m" << std::endl;
 	while (lit != lite)
 	{
 		std::cout << "Number [" << j << "] = " << *lit << std::endl;
 		++lit;
 		j++;
+	}
+	j--;
+	std::list<int>::reverse_iterator rlit = l1.rbegin();
+	std::list<int>::reverse_iterator rlite = l1.rend();
+	std::cout << "\e[2;34m------------- iteration decrement -------------\e[0m" << std::endl;
+	while (rlit != rlite)
+	{
+		std::cout << "Number [" << j << "] = " << *rlit << std::endl;
+		++rlit;
+		j--;
 	}
 	std::cout << "top = " << l1.back() << std::endl;
 	return 0;
