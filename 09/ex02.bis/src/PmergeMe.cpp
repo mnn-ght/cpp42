@@ -82,19 +82,19 @@ bool PmergeMe::parseNumbers(char **input) {
 	return true;
 }
 
-template<class Cit>
+/* template<class Cit>
 void binarySearchMerge(Cit first, Cit last, int step)
 {
 	// Cit middle = first + ((last - first) / 2);
 	while (*last > *first)
 		first += step;
-	/* std::cout << "first = " << *first << " //// last = " << *last << std::endl;
-	std::cout << "first - step + 1 = " << *(first - step + 1) << " //// last = " << *last << std::endl; */
+	// std::cout << "first = " << *first << " //// last = " << *last << std::endl;
+	// std::cout << "first - step + 1 = " << *(first - step + 1) << " //// last = " << *last << std::endl;
 	
 	if (*last < *first && last != first)
 		std::swap_ranges(first - step + 1, ++first, first);
 	return ;
-}
+} */
 
 template <class T> 
 typename T::iterator	getIt(T& cont, int pos) {
@@ -160,52 +160,53 @@ std::vector<int> insertSequence(int size) {
 	std::cout << "Size insert = " << size << std::endl;
 	std::vector<int> sequence;
 	std::vector<int> jacobsthal;
-	std::cout << "Jacobsthal sequence:";
 	jacobsthal.push_back(0);
 	jacobsthal.push_back(1);
 	for (int i = 2; jacobsthal[i - 1] + 2 * jacobsthal[i - 2] < size; i++)
 		jacobsthal.push_back(jacobsthal[i - 1] + 2 * jacobsthal[i - 2]);
 	jacobsthal.push_back(size);
+	std::cout << "Jacobsthal sequence:";
 	for (std::vector<int>::iterator i = jacobsthal.begin(); i != jacobsthal.end(); i++)
 		std::cout << " " << *i;
 	std::cout << std::endl;
 
-	for (int i = 1; i <= size; i++)
+	for (unsigned int i = 1; i < jacobsthal.size(); i++)
 	{
 		int current = jacobsthal[i];
 		while (current > jacobsthal[i - 1])
 		{
-			// std::cout << current << std::endl;
 			sequence.push_back(current);
 			current --;
 		}
-		/* for (; current > jacobsthal[i - 1]; current--)
-			sequence.push_back(current - 1); */
 	}
-	std::cout << "Sequence =";
+	std::cout << "Sequence = ";
 	for (std::vector<int>::iterator i = sequence.begin(); i != sequence.end(); i++)
 		std::cout << *i << " - ";
 	std::cout << std::endl;
 	return sequence;
 }
 
-int getnb(std::vector<int>::iterator it, std::vector<int> cont)
+/* int getnb(std::vector<int>::iterator it, std::vector<int> cont)
 {
 	int n = 0;
 	for (std::vector<int>::iterator i = cont.begin(); i != it; i++) {n++;}
 	return n;
-}
+} */
 
 std::vector<int>::iterator binarySearch(std::vector<int>::iterator first, std::vector<int>::iterator last, int step, int value, std::vector<int> cont) {
-	
 	(void) cont;
-	while (std::distance(first, last) > step)
+	std::cout << "===========\nLes comparaisons " << step << " : ";
+	for (std::vector<int>::iterator i = first; i <= last; i++)
+		std::cout << *i << " - ";
+	std::cout << "\n===========" << std::endl;
+	while (1)
 	{
-		std::cout << "last - first = " << (last - first) / 2 << " /// std::distance = " << std::distance(first, last) << std::endl;
+		// std::cout << "last - first = " << (last - first) / 2 << " /// std::distance = " << std::distance(first, last) << std::endl;
 		int lmf = std::distance(first, last) / step * step - 1;
 		std::vector<int>::iterator middle = first + lmf;
+		std::cout << "middle = " << *middle << std::endl;
 		if (std::distance(first, last) > step) {
-			std::cout << "middle = " << *middle << " compared to " << value << std::endl;
+			std::cout << "value = " << value << " compared to " << *middle << std::endl;
 			if (value < *middle)
 			{
 				last = middle;
@@ -216,24 +217,45 @@ std::vector<int>::iterator binarySearch(std::vector<int>::iterator first, std::v
 		if (std::distance(first, last) <= step) {
 			if (value < *middle)
 				return first;
-			else if (value > *last)
-				return last + 1;
-			else
-				return last - step + 1;
+			else 
+			{
+				std::cout << "value = " << value << " compared to " << *last << std::endl;
+				if (value > *last)
+					return last + 1;
+				else
+					return last - step + 1;
+			}
 		}
 		middle = first + ((last - first) / 2);
 	}
-	// std::cout << /* "middle = " << *middle << */ " ///// first = " << *first << " ///// last = " << *last << std::endl;
 	return first;
 }
 
+/* void iteratorsOfPairs(std::vector<std::vector<int>::iterator> *toReturn, std::vector<int> cont, std::vector<int> insertionSequence, int step) {
+	for (unsigned int i = 0; i < insertionSequence.size(); i++) {
+		toReturn->push_back(getIt(cont, insertionSequence[i] * step - 1));
+	}
+	std::cout << "===========\nIterators : ";
+	for (std::vector<std::vector<int>::iterator>::iterator i = toReturn->begin(); i != toReturn->end(); i++)
+		std::cout << " " << **i << std::endl;
+} */
+
+/* std::vector<std::vector<int>::iterator> *iteratorsOfPairs(std::vector<int> cont, std::vector<int> insertionSequence, int step) {
+	std::vector<std::vector<int>::iterator> *toReturn = new std::vector<std::vector<int>::iterator>;
+	for (unsigned int i = 0; i < insertionSequence.size(); i++) {
+		toReturn->push_back(getIt(cont, insertionSequence[i] * step - 1));
+	}
+	std::cout << "===========\nIterators : ";
+	for (std::vector<std::vector<int>::iterator>::iterator i = toReturn->begin(); i != toReturn->end(); i++)
+		std::cout << " " << **i << std::endl;
+	return toReturn;
+} */
+
 // template <class T>
 void	mergeInsert(std::vector<int>& cont, int step) {
-	// int i = step - 1;
 	std::vector<int>::iterator a;
 	std::vector<int>::iterator b;
 	std::vector<int>::iterator c;
-	// int insert;
 	std::vector<int> highestPair;
 	std::vector<int> lowestPair;
 	std::vector<int> insertionSequence;
@@ -246,27 +268,99 @@ void	mergeInsert(std::vector<int>& cont, int step) {
 	// cont.resize(step);
 	int j = 0;
 	int k = 0;
+	// for (int i = 0; i < size / (step * 2); i++)
+	// {
+	// 	cont.insert(cont.end(), getIt(highestPair, j), getIt(highestPair, j + step));
+	// 	/* for (std::vector<int>::iterator i = cont.begin(); i != cont.end(); i++)
+	// 		std::cout << *i << " / ";
+	// 	std::cout << std::endl; */
+	// 	if (i == 0)
+	// 		cont.insert(cont.begin(), lowestPair.begin(), lowestPair.begin() + step);
+	// 	else {
+	// 		a = getIt(lowestPair, insertionSequence[i] * step - step);
+	// 		// std::cout << *a << " - ";
+	// 		b = getIt(lowestPair, insertionSequence[i] * step - 1);
+	// 		// std::cout << *b << " - ";
+	// 		c = binarySearch(cont.begin(), cont.end() - 1, step, *b, cont);
+	// 		if (c == cont.begin())
+	// 			cont.insert(c, a, b + 1);
+	// 		else
+	// 			cont.insert(c, a, b + 1);
+	// 	}
+	// 	j += step;
+	// 	k += step * 2;
+	// 	/* for (std::vector<int>::iterator i = cont.begin(); i != cont.end(); i++)
+	// 		std::cout << *i << " - ";
+	// 	std::cout << std::endl; */
+	// }
+	// std::cout << std::endl;
+
+	// if (size % (step * 2) != 0)
+	// {
+	// 	a = getIt(lowestPair, lowestPair.size() - step);
+	// 	c = binarySearch(cont.begin(), cont.end() - 1, step, *(lowestPair.end() - 1), cont);
+	// 	if (c == cont.begin())
+	// 		cont.insert(c, a, lowestPair.end());
+	// 	else
+	// 		cont.insert(c, a, lowestPair.end());
+	// }
+
+	// /* std::cout << "===========\nStep " << step << " : ";
+	// for (std::vector<int>::iterator i = cont.begin(); i != cont.end(); i++)
+	// 	std::cout << *i << " - ";
+	// std::cout << "\n===========" << std::endl; */
+
+
+	cont = highestPair;
+	std::vector<int> itToPair = insertionSequence;
+	std::vector<int> highestnb;
+	for (std::vector<int>::iterator i = itToPair.begin(); i != itToPair.end(); i++)
+	{
+		*i = *i * step - 1;
+		a = getIt(cont, *i);
+		highestnb.push_back(*a);
+	}
+
+	std::cout << "\e[1;31m=========== Step " << step << " ===========\e[0m\n";
+	std::cout << "Iterators = ";
+	for (std::vector<int>::iterator i = highestnb.begin(); i != highestnb.end(); i++)
+	{
+		std::cout << " " << *i;
+	}
+	std::cout << std::endl;
 	for (int i = 0; i < size / (step * 2); i++)
 	{
-		cont.insert(cont.end(), getIt(highestPair, j), getIt(highestPair, j + step));
+		std::cout << "i = " << i << " /// size = " << size << " /// calcul = " << size / (step * 2) << std::endl;
+		std::cout << "Vector = ";
 		for (std::vector<int>::iterator i = cont.begin(); i != cont.end(); i++)
 			std::cout << *i << " / ";
+		std::cout << std::endl;
+		std::cout << "Iterators = ";
+		for (std::vector<int>::iterator it = itToPair.begin(); it != itToPair.end(); it++)
+		{
+			a = getIt(cont, *it);
+			std::cout << " " << *a;
+		}
 		std::cout << std::endl;
 		if (i == 0)
 		{
 			cont.insert(cont.begin(), lowestPair.begin(), lowestPair.begin() + step);
+			for (std::vector<int>::iterator it = itToPair.begin(); it != itToPair.end(); it++)
+				*it = *it + step;
 		}
-		else
-		{
+		else {
+			std::cout << "Range = ";
 			a = getIt(lowestPair, insertionSequence[i] * step - step);
 			std::cout << *a << " - ";
 			b = getIt(lowestPair, insertionSequence[i] * step - 1);
-			std::cout << *b << " - ";
-			c = binarySearch(cont.begin(), cont.end() - 1, step, *b, cont);
-			if (c == cont.begin())
-				cont.insert(c, a, b + 1);
-			else
-				cont.insert(c, a, b + 1);
+			std::cout << *b << std::endl;
+			c = binarySearch(cont.begin(), getIt(cont, itToPair[i]) - step, step, *b, cont);
+			cont.insert(c, a, b + 1);
+			for (int j = i; j < static_cast<int>(itToPair.size()); j++)
+			{
+				if (highestnb[j] != *getIt(cont, itToPair[j]))
+					itToPair[j] = itToPair[j] + step;
+			}
 		}
 		j += step;
 		k += step * 2;
@@ -274,27 +368,21 @@ void	mergeInsert(std::vector<int>& cont, int step) {
 			std::cout << *i << " - ";
 		std::cout << std::endl;
 	}
-	std::cout << std::endl;
 
 	if (size % (step * 2) != 0)
 	{
-		// std::cout << "coucou = ";
 		a = getIt(lowestPair, lowestPair.size() - step);
 		c = binarySearch(cont.begin(), cont.end() - 1, step, *(lowestPair.end() - 1), cont);
 		if (c == cont.begin())
 			cont.insert(c, a, lowestPair.end());
 		else
 			cont.insert(c, a, lowestPair.end());
-		// cont.insert(c, a, lowestPair.end());
-		/* // b = getIt(cont, i + step);
-		for (; i < (static_cast<int>(cont.size()) / step * step) - 1; i += step) {}
-		binarySearchMerge(a, getIt(cont, i), step); */
 	}
 
-	std::cout << "step " << step << " : ";
+	std::cout << "===========\nTest " << step << " : ";
 	for (std::vector<int>::iterator i = cont.begin(); i != cont.end(); i++)
 		std::cout << *i << " - ";
-	std::cout << std::endl;
+	std::cout << "\n===========" << std::endl;
 }
 
 // Algorithhm de tri par pair
