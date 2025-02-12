@@ -82,20 +82,6 @@ bool PmergeMe::parseNumbers(char **input) {
 	return true;
 }
 
-/* template<class Cit>
-void binarySearchMerge(Cit first, Cit last, int step)
-{
-	// Cit middle = first + ((last - first) / 2);
-	while (*last > *first)
-		first += step;
-	// std::cout << "first = " << *first << " //// last = " << *last << std::endl;
-	// std::cout << "first - step + 1 = " << *(first - step + 1) << " //// last = " << *last << std::endl;
-	
-	if (*last < *first && last != first)
-		std::swap_ranges(first - step + 1, ++first, first);
-	return ;
-} */
-
 template <class T> 
 typename T::iterator	getIt(T& cont, int pos) {
 	typename T::iterator	it = cont.begin();
@@ -117,11 +103,11 @@ std::vector<int> addHighRanges(std::vector<int> cont, int step) {
 	tmp.resize(cont.size() / step / 2 * step);
 
 	while (i < static_cast<int>(cont.size()))
-	{ 
+	{
 		a = getIt(cont, i);
 		b = getIt(cont, i + step);
-		if (a != cont.end())
-			std::copy(a, b, tmp.begin() + j);
+		if (a != cont.end() && b != cont.end())
+				std::copy(a, b, tmp.begin() + j);
 		i += step * 2;
 		j += step;
 	}
@@ -138,18 +124,34 @@ std::vector<int> addLowRanges(std::vector<int> cont, int step) {
 	std::vector<int>::iterator a;
 	std::vector<int>::iterator b;
 	std::vector<int> tmp;
-	tmp.resize(cont.size() - (cont.size() / step / 2 * step));
+	tmp.resize(cont.size() - (cont.size() / step / 2 * step) - cont.size() % step);
 
 	while (i < static_cast<int>(cont.size()))
-	{ 
+	{
 		a = getIt(cont, i);
 		b = getIt(cont, i + step);
-		if (a != cont.end())
+		if (a != cont.end() && b != cont.end())
+		{
 			std::copy(a, b, tmp.begin() + j);
+		}
+		if (step == 1 && cont.size() % (step * 2) != 0)
+			std::copy(a, a + 1, tmp.begin() + j);
 		i += step * 2;
 		j += step;
 	}
 	std::cout << "Lowest = ";
+	for (std::vector<int>::iterator i = tmp.begin(); i != tmp.end(); i++)
+		std::cout << *i << " - ";
+	std::cout << std::endl;
+	return tmp;
+}
+
+std::vector<int> addSolo(std::vector<int> cont, int step) {
+	std::vector<int> tmp;
+	tmp.resize(cont.size() % step);
+	
+	std::copy(getIt(cont, cont.size() - cont.size() % step), cont.end(), tmp.begin());
+	std::cout << "Solo = ";
 	for (std::vector<int>::iterator i = tmp.begin(); i != tmp.end(); i++)
 		std::cout << *i << " - ";
 	std::cout << std::endl;
@@ -199,7 +201,36 @@ std::vector<int>::iterator binarySearch(std::vector<int>::iterator first, std::v
 	for (std::vector<int>::iterator i = first; i <= last; i++)
 		std::cout << *i << " - ";
 	std::cout << "\n===========" << std::endl;
-	while (1)
+	
+	std::vector<int>::iterator test;
+	std::vector<int>::iterator base = first;
+  
+    while (std::distance(first, last) > step) {
+        test = first;
+		std::cout << "===========\nLes comparaisons " << step << " : ";
+		for (std::vector<int>::iterator i = first; i <= last; i++)
+			std::cout << *i << " - ";
+		std::cout << "\n===========" << std::endl;
+        std::advance(test, (std::distance(first, last) / 2));
+
+        if (step > 1 && std::distance(base, test) % step == 0) {
+            if (test != last)
+                test += step - 1;
+            else
+                test -= step - 1;
+        }
+
+        if (value < *test)
+            last = test;
+        else
+            first = test;
+    }
+    if (value < *first)
+        return (first);
+    if (value > *last)
+        return (++last);
+    return (last);
+	/* while (1)
 	{
 		// std::cout << "last - first = " << (last - first) / 2 << " /// std::distance = " << std::distance(first, last) << std::endl;
 		int lmf = std::distance(first, last) / step * step - 1;
@@ -226,30 +257,10 @@ std::vector<int>::iterator binarySearch(std::vector<int>::iterator first, std::v
 					return last - step + 1;
 			}
 		}
-		middle = first + ((last - first) / 2);
+		// middle = first + ((last - first) / 2);
 	}
-	return first;
+	return first; */
 }
-
-/* void iteratorsOfPairs(std::vector<std::vector<int>::iterator> *toReturn, std::vector<int> cont, std::vector<int> insertionSequence, int step) {
-	for (unsigned int i = 0; i < insertionSequence.size(); i++) {
-		toReturn->push_back(getIt(cont, insertionSequence[i] * step - 1));
-	}
-	std::cout << "===========\nIterators : ";
-	for (std::vector<std::vector<int>::iterator>::iterator i = toReturn->begin(); i != toReturn->end(); i++)
-		std::cout << " " << **i << std::endl;
-} */
-
-/* std::vector<std::vector<int>::iterator> *iteratorsOfPairs(std::vector<int> cont, std::vector<int> insertionSequence, int step) {
-	std::vector<std::vector<int>::iterator> *toReturn = new std::vector<std::vector<int>::iterator>;
-	for (unsigned int i = 0; i < insertionSequence.size(); i++) {
-		toReturn->push_back(getIt(cont, insertionSequence[i] * step - 1));
-	}
-	std::cout << "===========\nIterators : ";
-	for (std::vector<std::vector<int>::iterator>::iterator i = toReturn->begin(); i != toReturn->end(); i++)
-		std::cout << " " << **i << std::endl;
-	return toReturn;
-} */
 
 // template <class T>
 void	mergeInsert(std::vector<int>& cont, int step) {
@@ -258,16 +269,16 @@ void	mergeInsert(std::vector<int>& cont, int step) {
 	std::vector<int>::iterator c;
 	std::vector<int> highestPair;
 	std::vector<int> lowestPair;
+	std::vector<int> solo;
 	std::vector<int> insertionSequence;
 	int size = cont.size();
 	highestPair = addHighRanges(cont, step);
 	lowestPair = addLowRanges(cont, step);
+	if (cont.size() % step != 0)
+		solo = addSolo(cont, step);
 	insertionSequence = insertSequence(cont.size() / (step * 2));
 
 	cont.clear();
-	// cont.resize(step);
-	int j = 0;
-	int k = 0;
 	// for (int i = 0; i < size / (step * 2); i++)
 	// {
 	// 	cont.insert(cont.end(), getIt(highestPair, j), getIt(highestPair, j + step));
@@ -309,7 +320,6 @@ void	mergeInsert(std::vector<int>& cont, int step) {
 	// for (std::vector<int>::iterator i = cont.begin(); i != cont.end(); i++)
 	// 	std::cout << *i << " - ";
 	// std::cout << "\n===========" << std::endl; */
-
 
 	cont = highestPair;
 	std::vector<int> itToPair = insertionSequence;
@@ -356,28 +366,26 @@ void	mergeInsert(std::vector<int>& cont, int step) {
 			std::cout << *b << std::endl;
 			c = binarySearch(cont.begin(), getIt(cont, itToPair[i]) - step, step, *b, cont);
 			cont.insert(c, a, b + 1);
-			for (int j = i; j < static_cast<int>(itToPair.size()); j++)
+			for (int j = 0; j < static_cast<int>(itToPair.size()); j++)
 			{
 				if (highestnb[j] != *getIt(cont, itToPair[j]))
 					itToPair[j] = itToPair[j] + step;
 			}
 		}
-		j += step;
-		k += step * 2;
 		for (std::vector<int>::iterator i = cont.begin(); i != cont.end(); i++)
 			std::cout << *i << " - ";
 		std::cout << std::endl;
 	}
 
-	if (size % (step * 2) != 0)
+	if (lowestPair.size() != highestPair.size())
 	{
 		a = getIt(lowestPair, lowestPair.size() - step);
 		c = binarySearch(cont.begin(), cont.end() - 1, step, *(lowestPair.end() - 1), cont);
-		if (c == cont.begin())
-			cont.insert(c, a, lowestPair.end());
-		else
-			cont.insert(c, a, lowestPair.end());
+		cont.insert(c, a, lowestPair.end());
+		// cont.insert(cont.end(), a + step, lowestPair.end());
 	}
+	if (!solo.empty())
+		cont.insert(cont.end(), solo.begin(), solo.end());
 
 	std::cout << "===========\nTest " << step << " : ";
 	for (std::vector<int>::iterator i = cont.begin(); i != cont.end(); i++)
@@ -419,6 +427,14 @@ void PmergeMe::sortSequence() {
 	for (std::vector<int>::iterator i = _vct.begin(); i != _vct.end(); i++)
 		std::cout << " " << *i;
 	std::cout << std::endl;
+	for (std::vector<int>::iterator i = _vct.begin() + 1; i != _vct.end(); i++)
+	{
+		if (*i < *(i - 1))
+		{
+			std::cout << "\e[1;31mERROR : list not sorted" << std::endl;
+			return ;
+		}
+	}
 	std::cout << "Time to process a range of " << _vct.size() << " elements with std::vector : " << 1000.0 * (cv_End - cv_Start) / CLOCKS_PER_SEC << "ms" << std::endl;
 	
 	/* const std::clock_t cd_Start = std::clock();

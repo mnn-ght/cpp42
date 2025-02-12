@@ -38,9 +38,12 @@ re: fclean all
 
 #################### RULES ####################
 run: all
-	./$(NAME) 7 8 5 11 9 0 2 1 10 3 4 6
+	./$(NAME) 7 8 5 11 9 0 2 1 10 3 4 6 12
 
-run1: all
+run2: all
+	./$(NAME) 2 18 15 20 5 9 13 14 19 17 3
+
+eval: all
 	@printf "\n\e[1;32m====== TEST 1 ======\e[0m\n"
 	./$(NAME) 3 5 9 7 4
 	@sleep 0.2
@@ -53,4 +56,4 @@ run1: all
 	./$(NAME) `shuf -i 1-100000 -n 11 | tr "\n" " "`
 	
 val:
-	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./$(NAME) 7 8 5 11 9 0 2 1 10 3 4 6
+	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./$(NAME) `shuf -i 1-20 -n 11 | tr "\n" " "`
