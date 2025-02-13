@@ -42,6 +42,8 @@ run: all
 
 run2: all
 	./$(NAME) 2 18 15 20 5 9 13 14 19 17 3
+	./$(NAME) 3 5 9 7 4
+	./$(NAME) `shuf -i 1-100000 -n 11 | tr "\n" " "`
 
 eval: all
 	@printf "\n\e[1;32m====== TEST 1 ======\e[0m\n"
