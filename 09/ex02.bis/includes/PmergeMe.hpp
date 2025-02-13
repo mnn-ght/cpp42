@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:34:28 by magahat           #+#    #+#             */
-/*   Updated: 2025/02/11 15:44:51 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/13 18:28:09 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 #include <ctime>
 #include <cstdlib>
 #include <sys/time.h>
+
+#define DEBUG 0
 
 
 class PmergeMe
