@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:34:28 by magahat           #+#    #+#             */
-/*   Updated: 2025/02/13 18:28:09 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/17 14:07:23 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 #include <ctime>
 #include <cstdlib>
 #include <sys/time.h>
+#include <cerrno>
 
 #define DEBUG 0
-
 
 class PmergeMe
 {
@@ -38,7 +38,7 @@ private:
 	std::deque<int> _dq;
 	
 	std::vector<int> _jacobsthalSequence;
-	bool parseNumbers(char **input);
+	bool parseNumbers(char **input, int nbElements);
 	
 public:
 	PmergeMe();
@@ -57,4 +57,29 @@ public:
 
 double timediff(struct timeval Start, struct timeval End);
 
+template<class C>
+typename C::iterator	getIt(C& cont, int pos);
+template<class C>
+void isSorted(C cont);
+template<class C>
+void printCont(C cont, std::string msg, bool debug);
+template<class C, class Cit>
+void printItvalue(C cont, Cit itCont, std::string msg);
+template<class C>
+C addHighRanges(C cont, int step);
+template<class C>
+C addLowRanges(C cont, int step);
+template<class C>
+C addSolo(C cont, int step);
+template<class C>
+C insertSequence(int size);
+template<class Cit>
+Cit binarySearch(Cit first, Cit last, int step, int value);
+template<class C>
+void	mergeInsert(C &cont, int step);
+template<class C>
+void	sortPairs(C &cont, int level);
+
+
+#include "PmergeMe.tpp"
 #endif
