@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2025/02/05 15:41:02 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/18 14:17:41 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int main()
 	std::vector<int> x;
 	try
 	{
-		so.addMoreNumber(x.begin(), x.begin() + 100);
+		so.addMoreNumber(x.begin(), x.begin() + 99);
 		std::cout << so;
 		std::cout << "Shortest Span = " << so.shortestSpan() << std::endl;
 		std::cout << "Longest Span = " << so.longestSpan() << std::endl;
