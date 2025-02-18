@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2025/02/05 13:15:55 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:21:25 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int main( void ) {
 	try
 	{
 		std::cout << "size b = " << b.size() << std::endl;
+		b[2] = 40;
 		std::cout << "b[2] = " << b[2] << std::endl;
 		std::cout << "b[5] = " << b[5] << std::endl;
 	}
@@ -60,11 +61,12 @@ int main( void ) {
 		std::cerr << e.what() << std::endl;
 	}
 
-	Array<int> c(a);
+	const Array<int> c(a);
 	std::cout << "\e[1;32m=== Array<int> c(a) ===\e[0m" << std::endl;
 	try
 	{
 		std::cout << "size c = " << c.size() << std::endl;
+		// c[2] = 40;
 		std::cout << "c[0] = " << c[0] << std::endl;
 		std::cout << "c[2] = " << c[2] << std::endl;
 	}

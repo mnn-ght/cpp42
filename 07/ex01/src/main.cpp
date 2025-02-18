@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2025/02/05 10:27:13 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:04:50 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,46 +37,78 @@ int main( void ) {
 	
 	std::cout << "\e[1;32m==================== INT ====================\e[0m" << std::endl;
 	std::cout << "\e[3;32m--------- Iter print int --------\e[0m" << std::endl;
-	iter(i, 5, &printT);
+	iter(i, 5, printT<int>);
 	std::cout << "\e[3;32m--------- Iter increment int --------\e[0m" << std::endl;
-	iter(i, 5, &incrementT);
+	iter(i, 5, incrementT<int>);
 	std::cout << "\e[3;32m--------- Iter print int --------\e[0m" << std::endl;
-	iter(i, 5, &printT);
+	iter(i, 5, printT<int>);
 	std::cout << "\e[3;32m--------- Iter decrement int --------\e[0m" << std::endl;
-	iter(i, 5, &decrementT);
+	iter(i, 5, decrementT<int>);
 	std::cout << "\e[3;32m--------- Iter print int --------\e[0m" << std::endl;
-	iter(i, 5, &printT);
+	iter(i, 5, printT<int>);
 	std::cout << "\e[1;32m==================== DOUBLE ====================\e[0m" << std::endl;
 	std::cout << "\e[3;32m--------- Iter print double --------\e[0m" << std::endl;
-	iter(d, 5, &printT);
+	iter(d, 5, printT<double>);
 	std::cout << "\e[3;32m--------- Iter increment double --------\e[0m" << std::endl;
-	iter(d, 5, &incrementT);
+	iter(d, 5, incrementT<double>);
 	std::cout << "\e[3;32m--------- Iter print double --------\e[0m" << std::endl;
-	iter(d, 5, &printT);
+	iter(d, 5, printT<double>);
 	std::cout << "\e[3;32m--------- Iter decrement double --------\e[0m" << std::endl;
-	iter(d, 5, &decrementT);
+	iter(d, 5, decrementT<double>);
 	std::cout << "\e[3;32m--------- Iter print double --------\e[0m" << std::endl;
-	iter(d, 5, &printT);
+	iter(d, 5, printT<double>);
 	std::cout << "\e[1;32m==================== FLOAT ====================\e[0m" << std::endl;
 	std::cout << "\e[3;32m--------- Iter print float --------\e[0m" << std::endl;
-	iter(f, 3, &printT);
+	iter(f, 3, printT<float>);
 	std::cout << "\e[1;32m==================== CHAR ====================\e[0m" << std::endl;
 	std::cout << "\e[3;32m--------- Iter print char --------\e[0m" << std::endl;
-	iter(c, 3, &printT);
+	iter(c, 3, printT<char>);
 	std::cout << "\e[3;32m--------- Iter increment char --------\e[0m" << std::endl;
-	iter(c, 3, &incrementT);
+	iter(c, 3, incrementT<char>);
 	std::cout << "\e[3;32m--------- Iter print char --------\e[0m" << std::endl;
-	iter(c, 3, &printT);
+	iter(c, 3, printT<char>);
 	std::cout << "\e[3;32m--------- Iter decrement char --------\e[0m" << std::endl;
-	iter(c, 3, &decrementT);
+	iter(c, 3, decrementT<char>);
 	std::cout << "\e[3;32m--------- Iter print char --------\e[0m" << std::endl;
-	iter(c, 3, &printT);
+	iter(c, 3, printT<char>);
 	std::cout << "\e[1;32m==================== STRING ====================\e[0m" << std::endl;
 	std::cout << "\e[3;32m--------- Iter print string --------\e[0m" << std::endl;
-	iter(str, 3, &printT);
+	iter(str, 3, printT<std::string>);
 	std::cout << "\e[1;32m==================== PTR ====================\e[0m" << std::endl;
 	std::cout << "\e[3;32m--------- Iter print ptr --------\e[0m" << std::endl;
-	iter(ptr, 3, &printT);
+	iter(ptr, 3, printT<void *>);
 
 	return 0;
 }
+
+/* class Awesome
+{
+  public:
+    Awesome( void ) : _n( 42 ) { return; }
+    int get( void ) const { return this->_n; }
+  private:
+    int _n;
+};
+
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs )
+{
+  o << rhs.get();
+  return o;
+}
+
+template< typename T >
+void print( T& x )
+{
+  std::cout << x << std::endl;
+  return;
+}
+
+int main() {
+  int tab[] = { 0, 1, 2, 3, 4 };
+  Awesome tab2[5];
+
+  iter( tab, 5, print<const int> );
+  iter( tab2, 5, print<Awesome> );
+
+  return 0;
+} */
