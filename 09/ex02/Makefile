@@ -2,7 +2,7 @@
 NAME = PmergeMe
 CC = c++
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3
 CPPFLAG = -std=c++98
 
 #################### PATH ####################
@@ -37,20 +37,32 @@ fclean: clean
 re: fclean all
 
 #################### RULES ####################
-run: all
-	./$(NAME) 7 8 5 9 11 0 2 1 10 3 4 6
-
-run1: all
-	@printf "\n\e[1;32m====== TEST 1 ======\e[0m\n"
-	./$(NAME) 3 5 9 7 4
-	@sleep 0.2
-	# @printf "\n\e[1;32m====== TEST 2 ======\e[0m\n"
-	# ./$(NAME) `shuf -i 1-100000 -n 3000 | tr "\n" " "`
-	# @sleep 0.2
-	@printf "\n\e[1;32m====== TEST 3 ======\e[0m\n"
+error: all
+	@printf "\n\e[1;32m====== TEST 1: un seul nombre ======\e[0m\n"
+	./$(NAME) 3
+	@printf "\n\e[1;32m====== TEST 2: un nombre negatif ======\e[0m\n"
 	./$(NAME)  "-1" "2"
-	@printf "\n\e[1;32m====== TEST 4 ======\e[0m\n"
-	./$(NAME) `shuf -i 1-100000 -n 11 | tr "\n" " "`
-	
+	@printf "\n\e[1;32m====== TEST 3 : un doublon ======\e[0m\n"
+	./$(NAME) 1 5 4 4
+	@printf "\n\e[1;32m====== TEST 4 : nombre > INT_MAX ======\e[0m\n"
+	./$(NAME) 1 5 4 2147483648
+	@printf "\n\e[1;32m====== TEST 5 : format ======\e[0m\n"
+	./$(NAME) "1 4 5 2"
+
+run: all
+	./$(NAME) 7 8 5 11 9 0 2 1 10 3 4 6 12
+
+10: all
+	./$(NAME) `shuf -i 1-10 -n 10 | tr "\n" " "`
+
+50: all
+	./$(NAME) `shuf -i 1-10 -n 10 | tr "\n" " "`
+
+100: all
+	./$(NAME) `shuf -i 1-100 -n 100 | tr "\n" " "`
+
+3000: all
+	./$(NAME) `shuf -i 1-3000 -n 3000 | tr "\n" " "`
+
 val:
-	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./$(NAME) 3 5 9 7 4
+	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./$(NAME) `shuf -i 1-20 -n 11 | tr "\n" " "`
