@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2025/02/05 16:03:36 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/23 11:48:57 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,20 @@ int main()
 		i--;
 	}
 	std::cout << "top = " << mstack.top() << std::endl;
+	std::cout << "size = " << mstack.size() << std::endl;
+	std::cout << "\e[1;32m=== TEST STACK ===\e[0m" << std::endl;
 	std::stack<int> s(mstack);
+	std::cout << "top = " << s.top() << std::endl;
+	std::cout << "size = " << s.size() << std::endl;
+	std::cout << "We pop the last number("<< s.top() << ")." << std::endl;
+	s.pop();
+	while (!s.empty())
+	{
+		std::cout << "new top = " << s.top() << std::endl;
+		std::cout << "We pop the last number("<< s.top() << ")." << std::endl;
+		s.pop();
+	}
+	std::cout << "size = " << s.size() << std::endl;
 
 	std::cout << "\e[1;32m=== TEST LIST ===\e[0m" << std::endl;
 	std::list<int> l1;

@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:28:22 by magahat           #+#    #+#             */
-/*   Updated: 2025/02/05 15:45:28 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/23 11:41:29 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ Span &Span::operator=(const Span &other)
 
 std::ostream	&operator<<(std::ostream& out, const Span &storage)
 {
-	out << "This storage has actually " << storage.getStock().size() << " numbers in stock." << std::endl;
+	out << "\e[1;36m---------------- Storate state ----------------\e[0m" << std::endl;
+	out << "\e[2;36mThis storage has actually " << storage.getStock().size() << " numbers in stock." << std::endl;
 	out << "It can store " << storage.getMaxSize() << " maximum. It can accept " << storage.getMaxSize() - storage.getStock().size() << " numbers in stock." << std::endl;
 	if (storage.getStock().size() > 0 && storage.getStock().size() < 100)
 	{
@@ -57,6 +58,7 @@ std::ostream	&operator<<(std::ostream& out, const Span &storage)
 	}
 	if (storage.getStock().size() > 100)
 		out << "There is too many numbers to show them." << std::endl;
+	out << "\e[0m\e[1;36m-----------------------------------------------\e[0m" << std::endl;
 	return out;
 }
 

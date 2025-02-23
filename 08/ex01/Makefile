@@ -39,7 +39,6 @@ re: fclean all
 #################### RULES ####################
 run: all
 	./$(NAME)
-	
 
 val:
 	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./$(NAME)
