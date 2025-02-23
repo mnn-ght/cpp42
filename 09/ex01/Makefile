@@ -2,7 +2,7 @@
 NAME = RPN
 CC = c++
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3
 CPPFLAG = -std=c++98
 
 #################### PATH ####################
@@ -44,10 +44,18 @@ run: all
 	./$(NAME) "7 7 * 7 -"
 	@printf "\n\e[1;32m====== TEST 3 (expected output: 0) ======\e[0m\n"
 	./$(NAME) "1 2 * 2 / 2 * 2 4 - +"
-	@printf "\n\e[1;32m====== TEST 4 (expected output: Error) ======\e[0m\n"
+	@printf "\n\e[1;32m====== TEST 4 (expected output: 1) ======\e[0m\n"
+	./$(NAME) "1 2 + 3 /"
+	@printf "\n\e[1;32m====== TEST 5 (expected output: 25) ======\e[0m\n"
+	./$(NAME) "2 3 + 5 *"
+
+error: all
+	@printf "\e[1;32m====== TEST 1 ======\e[0m\n"
 	./$(NAME) "(1 + 1)"
-	@printf "\n\e[1;32m====== TEST 5 (expected output: Error) ======\e[0m\n"
+	@printf "\n\e[1;32m====== TEST 2 ======\e[0m\n"
 	./$(NAME) "7 7 * 37 -"
+	@printf "\n\e[1;32m====== TEST 3 ======\e[0m\n"
+	./$(NAME) "2 3 + 5 * *"
 
 val:
 	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./$(NAME) "7 7 * 7 -"

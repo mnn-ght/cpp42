@@ -6,7 +6,7 @@
 /*   By: magahat <magahat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:54:30 by magahat           #+#    #+#             */
-/*   Updated: 2025/01/27 12:18:38 by magahat          ###   ########.fr       */
+/*   Updated: 2025/02/23 14:41:14 by magahat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int main(int argc, char **argv)
 {
 	if (argc < 2)
+	{
 		std::cout << "\e[1;31mError: not enough arguments.\e[0m" << std::endl;
+		return -1;
+	}
 	try
 	{
 		PmergeMe pmm(argc - 1, argv);
@@ -25,6 +28,5 @@ int main(int argc, char **argv)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	
 	return 0;
 }
