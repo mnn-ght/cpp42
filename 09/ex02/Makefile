@@ -50,13 +50,13 @@ error: all
 	./$(NAME) "1 4 5 2"
 
 run: all
-	./$(NAME) 7 8 5 11 9 0 2 1 10 3 4 6 12
+	./$(NAME) 7 8 5 11 9 0 2 1 10 3 4 6
 
 10: all
 	./$(NAME) `shuf -i 1-10 -n 10 | tr "\n" " "`
 
 50: all
-	./$(NAME) `shuf -i 1-10 -n 10 | tr "\n" " "`
+	./$(NAME) `shuf -i 1-50 -n 50 | tr "\n" " "`
 
 100: all
 	./$(NAME) `shuf -i 1-100 -n 100 | tr "\n" " "`

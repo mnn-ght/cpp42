@@ -81,8 +81,8 @@ bool PmergeMe::parseNumbers(char **input, int nbElements) {
 
 void PmergeMe::sortSequence() {
 	std::cout << "\e[1;35m====================== Listes before ======================\e[0m" << std::endl;
-	printCont(_vct, "Before", 0);
-	printCont(_dq, "Before", 0);
+	printCont(_vct, "Before (vector)", 0);
+	printCont(_dq, "Before (deque)", 0);
 	
 	std::cout << std::endl;
 	std::cout << "\e[1;35m====================== Vector through Algo Ford Johnson ======================\e[0m" << std::endl;
